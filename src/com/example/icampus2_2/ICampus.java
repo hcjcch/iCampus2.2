@@ -1,5 +1,6 @@
 package com.example.icampus2_2;
 
+import cn.edu.bistu.bus.BusShow;
 import cn.edu.bistu.map.BistuMap;
 import cn.edu.bistu.school.SchoolShow;
 import cn.edu.bistu.yellowPage.YellowPageShow;
@@ -15,6 +16,7 @@ public class ICampus extends Activity {
 	private Button school;
 	private Button yellowPage;
 	private Button map;
+	private Button bus;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +31,12 @@ public class ICampus extends Activity {
 		news = (Button) findViewById(R.id.newsButton);
 		school = (Button) findViewById(R.id.schoolButton);
 		yellowPage = (Button) findViewById(R.id.yellowPageButton);
+		bus = (Button) findViewById(R.id.bus);
 		news.setOnClickListener(new Click());
 		school.setOnClickListener(new Click());
 		yellowPage.setOnClickListener(new Click());
 		map.setOnClickListener(new Click());
+		bus.setOnClickListener(new Click());
 	}
 
 	class Click implements OnClickListener {
@@ -54,6 +58,8 @@ public class ICampus extends Activity {
 			case R.id.map:
 				intent.setClass(ICampus.this, BistuMap.class);
 				break;
+			case R.id.bus:
+				intent.setClass(ICampus.this, BusShow.class);
 			default:
 				break;
 			}

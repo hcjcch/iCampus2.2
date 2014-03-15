@@ -46,4 +46,14 @@
         android:textSize="20sp"
         android:text="地图" />
 
+    <Button
+        android:id="@+id/bus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/map"
+        android:layout_alignBottom="@+id/map"
+        android:layout_alignRight="@+id/schoolButton"
+        android:textSize="20sp"
+        android:text="校车" />
+
 </RelativeLayout>

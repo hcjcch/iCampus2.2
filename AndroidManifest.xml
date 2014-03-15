@@ -63,6 +63,7 @@
         </activity>
         <activity android:name="cn.edu.bistu.map.BistuMap"
             android:icon="@drawable/logo"></activity>
+        <activity android:name="cn.edu.bistu.bus.BusShow"></activity>
     </application>
 
 </manifest>
