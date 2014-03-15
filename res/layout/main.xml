@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <Button
+        android:id="@+id/yellowPageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/schoolButton"
+        android:layout_alignBottom="@+id/schoolButton"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/schoolButton"
+        android:text="黄页"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/newsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="182dp"
+        android:text="新闻"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/schoolButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/newsButton"
+        android:layout_alignBottom="@+id/newsButton"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/newsButton"
+        android:text="学院"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/newsButton"
+        android:layout_below="@+id/newsButton"
+        android:layout_marginTop="24dp"
+        android:textSize="20sp"
+        android:text="地图" />
+
+</RelativeLayout>

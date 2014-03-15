@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/call"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="18sp"
+        android:background="@drawable/dialogselector"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="拨号" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dialogdivider" />
+
+    <Button
+        android:id="@+id/addressList"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_width="match_parent"
+        android:background="@drawable/dialogselector"
+        android:layout_height="40dp"
+        android:textSize="18sp"
+        android:text="加入通讯录" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dialogdivider" />
+
+    <Button
+        android:id="@+id/cancel"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/dialogselector"
+        android:textSize="18sp"
+        android:text="取消" />
+
+</LinearLayout>

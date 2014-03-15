@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dip"
+    android:background="#FF222222"
+    android:gravity="center_vertical" >
+
+    <ImageView
+        android:id="@+id/newsIcon"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/logo" />
+
+    <ImageButton
+        android:id="@+id/newsRightButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/news_right_imagebutton" />
+
+    <ImageButton
+        android:id="@+id/newsLeftButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/newsRightButton"
+        android:background="@drawable/news_left_imagebutton" />
+
+</RelativeLayout>
