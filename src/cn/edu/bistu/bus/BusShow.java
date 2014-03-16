@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.http.Header;
 
 import cn.edu.bistu.busData.Bus;
+import cn.edu.bistu.busData.CatBus;
 import cn.edu.bistu.busData.JsonBus;
 
 import com.example.icampus2_2.ICampus;
@@ -25,6 +26,8 @@ import android.widget.ListView;
 public class BusShow extends Activity {
 	private ListView busList;
 	private List<Bus> bus;
+	private CatBus tongQingbus;
+	private CatBus jiaoXueBus;
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
@@ -68,15 +71,14 @@ public class BusShow extends Activity {
 						super.onSuccess(arg0, arg1, arg2);
 						String string = new String(arg2);
 						bus = (new JsonBus()).getList(string);
-						// System.out.println(bus);
 						BusListAdapter adapter = new BusListAdapter(
-								BusShow.this, bus);
+								BusShow.this, bus,busList);
 						busList.setAdapter(adapter);
 					}
 
 				});
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub

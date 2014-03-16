@@ -10,10 +10,14 @@ import cn.edu.bistu.busData.CatBus;
 import cn.edu.bistu.busData.EveryBus;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class BusListAdapter extends BaseAdapter {
@@ -23,12 +27,14 @@ public class BusListAdapter extends BaseAdapter {
 	private ArrayList<Object> bus;
 	private static final int TITLE_ITEM = 0;
 	private static final int BUS_LINE = 1;
+	private ListView listView;
 
-	public BusListAdapter(Context context, List<Bus> list) {
+	public BusListAdapter(final Context context, List<Bus> list,ListView listView) {
 		super();
 		this.context = context;
 		tongQingbus = list.get(0).getCatbus();
 		jiaoXueBus = list.get(1).getCatbus();
+		this.listView = listView;
 		bus = new ArrayList<Object>();
 		bus.add("Í¨ÇÚ°à³µ");
 		for (EveryBus everyBus : tongQingbus.getCatbus()) {
@@ -38,6 +44,18 @@ public class BusListAdapter extends BaseAdapter {
 		for (EveryBus everyBus : jiaoXueBus.getCatbus()) {
 			bus.add(everyBus);
 		}
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				System.out.println(arg2);
+				intent.setClass(context,BusDetail.class);
+				context.startActivity(intent);
+			}
+		});
 	}
 
 	public BusListAdapter() {
@@ -101,6 +119,8 @@ public class BusListAdapter extends BaseAdapter {
 						.inflate(R.layout.bus_item, null);
 				busItem.line1 = (TextView)arg1.findViewById(R.id.line1);
 				busItem.line2 = (TextView)arg1.findViewById(R.id.line2);
+				busItem.goTimeTextView = (TextView)arg1.findViewById(R.id.goTime);
+				busItem.backTime = (TextView)arg1.findViewById(R.id.backTime);
 				arg1.setTag(busItem);
 			}else {
 				busItem = (BusItem)arg1.getTag();
@@ -108,6 +128,8 @@ public class BusListAdapter extends BaseAdapter {
 			EveryBus everyBus = (EveryBus)bus.get(arg0);
 			busItem.line1.setText(everyBus.getBusName());
 			busItem.line2.setText(everyBus.getBusName());
+			busItem.goTimeTextView.setText("  GO£º"+everyBus.getDepartTime());
+			busItem.backTime.setText("BACK£º"+everyBus.getReturnTime());
 		}
 		return arg1;
 	}
