@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="2dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -7,6 +11,7 @@
         android:id="@+id/busList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:scrollbarStyle="outsideInset"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" >
     </ListView>
