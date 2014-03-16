@@ -61,9 +61,14 @@
             android:name="cn.edu.bistu.yellowPage.ContactPerson"
             android:icon="@drawable/logo" >
         </activity>
-        <activity android:name="cn.edu.bistu.map.BistuMap"
-            android:icon="@drawable/logo"></activity>
-        <activity android:name="cn.edu.bistu.bus.BusShow"></activity>
+        <activity
+            android:name="cn.edu.bistu.map.BistuMap"
+            android:icon="@drawable/logo" >
+        </activity>
+        <activity
+            android:name="cn.edu.bistu.bus.BusShow"
+            android:label="校车" >
+        </activity>
     </application>
 
 </manifest>
