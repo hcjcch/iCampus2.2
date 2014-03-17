@@ -1,11 +1,13 @@
 package cn.edu.bistu.bus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.Header;
 
 import cn.edu.bistu.busData.Bus;
 import cn.edu.bistu.busData.CatBus;
+import cn.edu.bistu.busData.EveryBus;
 import cn.edu.bistu.busData.JsonBus;
 
 import com.example.icampus2_2.ICampus;
@@ -21,6 +23,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class BusShow extends Activity {
@@ -28,6 +33,7 @@ public class BusShow extends Activity {
 	private List<Bus> bus;
 	private CatBus tongQingbus;
 	private CatBus jiaoXueBus;
+	private ArrayList<Object> buses;
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
@@ -45,6 +51,7 @@ public class BusShow extends Activity {
 
 	public void init() {
 		busList = (ListView) findViewById(R.id.busList);
+		busList.setOnItemClickListener(new ItemClick());
 	}
 
 	public void show() {
@@ -71,12 +78,42 @@ public class BusShow extends Activity {
 						super.onSuccess(arg0, arg1, arg2);
 						String string = new String(arg2);
 						bus = (new JsonBus()).getList(string);
+						tongQingbus = bus.get(0).getCatbus();
+						jiaoXueBus = bus.get(1).getCatbus();
+						buses = new ArrayList<Object>();
+						buses.add("通勤班车");
+						for (EveryBus everyBus : tongQingbus.getCatbus()) {
+							buses.add(everyBus);
+						}
+						buses.add("教学班车");
+						for (EveryBus everyBus : jiaoXueBus.getCatbus()) {
+							buses.add(everyBus);
+						}
 						BusListAdapter adapter = new BusListAdapter(
-								BusShow.this, bus,busList);
+								BusShow.this, buses);
 						busList.setAdapter(adapter);
 					}
-
 				});
+	}
+
+	class ItemClick implements OnItemClickListener {
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+			// TODO Auto-generated method stub
+			Intent intent = new Intent();
+			Bundle bundle = new Bundle();
+			EveryBus everyBus = (EveryBus)buses.get(arg2);
+			bundle.putString("busName", everyBus.getBusName());
+			bundle.putString("departTime", everyBus.getDepartTime());
+			bundle.putString("returnime", everyBus.getReturnTime());
+			bundle.putSerializable("busLine", everyBus.getBusLine());
+			intent.putExtras(bundle);
+			intent.setClass(BusShow.this, BusDetail.class);
+			startActivity(intent);
+		}
+
 	}
 
 	@Override

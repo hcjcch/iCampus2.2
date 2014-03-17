@@ -1,61 +1,28 @@
 package cn.edu.bistu.bus;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.example.icampus2_2.R;
 
-import cn.edu.bistu.busData.Bus;
-import cn.edu.bistu.busData.CatBus;
 import cn.edu.bistu.busData.EveryBus;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 public class BusListAdapter extends BaseAdapter {
 	private Context context;
-	private CatBus tongQingbus;
-	private CatBus jiaoXueBus;
 	private ArrayList<Object> bus;
 	private static final int TITLE_ITEM = 0;
 	private static final int BUS_LINE = 1;
-	private ListView listView;
 
-	public BusListAdapter(final Context context, List<Bus> list,ListView listView) {
+	public BusListAdapter(final Context context,ArrayList<Object> bus) {
 		super();
 		this.context = context;
-		tongQingbus = list.get(0).getCatbus();
-		jiaoXueBus = list.get(1).getCatbus();
-		this.listView = listView;
-		bus = new ArrayList<Object>();
-		bus.add("通勤班车");
-		for (EveryBus everyBus : tongQingbus.getCatbus()) {
-			bus.add(everyBus);
-		}
-		bus.add("教学班车");
-		for (EveryBus everyBus : jiaoXueBus.getCatbus()) {
-			bus.add(everyBus);
-		}
-		listView.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent();
-				System.out.println(arg2);
-				intent.setClass(context,BusDetail.class);
-				context.startActivity(intent);
-			}
-		});
+		this.bus = bus;
 	}
 
 	public BusListAdapter() {
