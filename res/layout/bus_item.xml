@@ -8,18 +8,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/line2"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/home_news" />
+        android:src="@drawable/bus" />
 
     <TextView
         android:id="@+id/line1"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:gravity="center"
-        android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/busLogo"
-        android:text="TextView" />
+        android:gravity="center"
+        android:text="TextView"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/goTime"
@@ -35,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:gravity="center"
-        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@id/goTime"
         android:layout_below="@+id/goTime"
         android:text="TextView" />
 
@@ -43,10 +42,10 @@
         android:id="@+id/line2"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:gravity="center"
         android:layout_alignBottom="@+id/backTime"
         android:layout_alignLeft="@+id/line1"
-        android:textColor="#CCCCCC"
-        android:text="TextView" />
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#CCCCCC" />
 
 </RelativeLayout>

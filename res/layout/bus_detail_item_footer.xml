@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/footerTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="27dp"
+        android:text="TextView" />
 
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/headerTime"
-        android:src="@drawable/busline0" />
+        android:layout_toRightOf="@+id/footerTime"
+        android:src="@drawable/busline2" />
 
     <TextView
-        android:id="@+id/headerTime"
+        android:id="@+id/footerStation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="26dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/headerStation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/headerTime"
-        android:layout_alignBottom="@+id/headerTime"
+        android:layout_alignBaseline="@+id/footerTime"
+        android:layout_alignBottom="@+id/footerTime"
         android:layout_toRightOf="@+id/imageView1"
         android:text="TextView" />
 

@@ -95,8 +95,14 @@ public class BusListAdapter extends BaseAdapter {
 			EveryBus everyBus = (EveryBus)bus.get(arg0);
 			busItem.line1.setText(everyBus.getBusName());
 			busItem.line2.setText(everyBus.getBusName());
-			busItem.goTimeTextView.setText("  GO£º"+everyBus.getDepartTime());
-			busItem.backTime.setText("BACK£º"+everyBus.getReturnTime());
+			String departTime = everyBus.getDepartTime();
+			String returnTime = everyBus.getReturnTime();
+			busItem.goTimeTextView.setText("Íù£º"+departTime.substring(0,departTime.lastIndexOf(":")));
+			if (!returnTime.equals("null")) {
+				busItem.backTime.setText("·µ£º"+returnTime.substring(0,returnTime.lastIndexOf(":")));
+			}else {
+				busItem.backTime.setText("·µ£º"+"  -");
+			}
 		}
 		return arg1;
 	}

@@ -105,6 +105,12 @@ public class BusShow extends Activity {
 			Intent intent = new Intent();
 			Bundle bundle = new Bundle();
 			EveryBus everyBus = (EveryBus)buses.get(arg2);
+			int busDivide = buses.indexOf("教学班车");
+			if (arg2 < busDivide) {
+				bundle.putString("busType", "通勤班车");
+			}else {
+				bundle.putString("busType", "教学班车");
+			}
 			bundle.putString("busName", everyBus.getBusName());
 			bundle.putString("departTime", everyBus.getDepartTime());
 			bundle.putString("returnime", everyBus.getReturnTime());
