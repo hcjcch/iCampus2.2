@@ -2,29 +2,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <include
+    <!-- <include
         android:id="@+id/include1"
-        layout="@layout/news_detail_title_bar" />
+        layout="@layout/news_detail_title_bar" /> -->
 
     <TextView
         android:id="@+id/detailTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/include1"
+        android:layout_alignParentTop="true"
         android:gravity="center_horizontal"
-        android:textSize="30sp"
-        android:textStyle="bold"
         android:maxLines="2"
-        android:text="TITLE" />
+        android:text="TITLE"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:scrollbarStyle="outsideInset"
+        android:layout_below="@+id/detailTitle"
         android:layout_marginLeft="10dp"
-        android:layout_below="@+id/detailTitle" >
+        android:scrollbarStyle="outsideInset" >
 
         <TextView
             android:id="@+id/detail"

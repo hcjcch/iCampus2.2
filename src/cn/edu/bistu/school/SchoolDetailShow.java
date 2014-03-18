@@ -14,41 +14,40 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
-import android.view.View.OnClickListener;
-import android.widget.ImageButton;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 @SuppressLint("NewApi")
 public class SchoolDetailShow extends Activity {
 	private TextView school;
-	private TextView titile;
-	private ImageButton left;
-	private ImageButton right;
 	private ArrayList<School> schools;
 	private int position;
 	private MyProgressDialog progressDialog;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.school_detail);
 		init();
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		Intent intent = getIntent();
-		schools = (ArrayList<School>) intent
-				.getSerializableExtra("schoolList");
+		schools = (ArrayList<School>) intent.getSerializableExtra("schoolList");
 		position = intent.getIntExtra("position", 0);
+		String introName = intent.getStringExtra("introName");
+		actionBar.setTitle(introName);
+		actionBar.show();
 		progressDialog = new MyProgressDialog(this, "正在加载中", "请稍后...", false);
 		show(position);
 	}
 
-	private void show(int position){
+	private void show(int position) {
 		AsyncHttpClient client = new AsyncHttpClient();
 		client.get(
 				"http://api.bistu.edu.cn/api/api.php?table=collegeintro&action=detail&mod="
@@ -79,49 +78,27 @@ public class SchoolDetailShow extends Activity {
 						SchoolDetail schoolDetail = jsonSchoolDetail
 								.getList(information);
 						school.setText(schoolDetail.getIntroCont());
-						titile.setText(schoolDetail.getIntroName());
 						progressDialog.hide();
 					}
 				});
 	}
-	class Click implements OnClickListener {
 
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			switch (v.getId()) {
-			case R.id.newsLeftButton:
-				if (position > 0 ) {
-					show(--position);
-					right.setEnabled(true);
-				}
-				if (position == 0) {
-					left.setEnabled(false);
-				}
-				break;
-
-			case R.id.newsRightButton:
-				if (position<schools.size()-1) {
-					show(++position);
-					left.setEnabled(true);
-				}
-				if (position == schools.size()-1) {
-					right.setEnabled(false);
-				}
-				break;
-			default:
-				break;
-			}
-		}
-	}
-	
 	private void init() {
 		school = (TextView) findViewById(R.id.schoolDetail);
-		titile = (TextView) findViewById(R.id.schoolText);
-		left = (ImageButton) findViewById(R.id.newsLeftButton);
-		right = (ImageButton) findViewById(R.id.newsRightButton);
-		left.setOnClickListener(new Click());
-		right.setOnClickListener(new Click());
 	}
-	
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			progressDialog.cancel();
+			finish();
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }

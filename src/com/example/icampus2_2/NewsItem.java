@@ -57,6 +57,7 @@ public class NewsItem extends Fragment {
 		// 获取Activity传递过来的参数
 		Bundle mBundle = getArguments();
 		final String url = mBundle.getString("url");
+		final String tititle = mBundle.getString("bundle");
 		LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(
 				getActivity()).inflate(R.layout.footer, null);
 		frameLayout = (FrameLayout) linearLayout.findViewById(R.id.footer);
@@ -73,14 +74,10 @@ public class NewsItem extends Fragment {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
-				ArrayList<String> detailUrls = new ArrayList<String>();
-				for (NewsListType newsListType : newsList) {
-					detailUrls.add(newsListType.getDetailUrl());
-				}
 				Intent intent = new Intent();
 				intent.setClass(getActivity(), NewsDetail.class);
-				intent.putExtra("detailUrls", detailUrls);
-				intent.putExtra("position", arg2);
+				intent.putExtra("detailUrl", newsList.get(arg2).getDetailUrl());
+				intent.putExtra("tititle", tititle);
 				startActivity(intent);
 			}
 		});
@@ -125,8 +122,9 @@ public class NewsItem extends Fragment {
 	}
 
 	private void showImage(int firstVisibleItem, int visibleItemCount) {
-		//注：firstVisibleItem + visibleItemCount-1 = 20 1其中包括了footview，这儿一定要小心！
-		for (int i = firstVisibleItem; i < firstVisibleItem + visibleItemCount-1; i++) {
+		// 注：firstVisibleItem + visibleItemCount-1 = 20 1其中包括了footview，这儿一定要小心！
+		for (int i = firstVisibleItem; i < firstVisibleItem + visibleItemCount
+				- 1; i++) {
 			String mImageUrl = urlList.get(i);
 			final ImageView mImageView = (ImageView) listView
 					.findViewWithTag(mImageUrl);
@@ -167,8 +165,8 @@ public class NewsItem extends Fragment {
 					newsList.add(type);
 				}
 				if (currentPage == 1) {
-					adapter = new ImageAdapter(getActivity(), urlList,
-							list, mImageDownLoader);
+					adapter = new ImageAdapter(getActivity(), urlList, list,
+							mImageDownLoader);
 					listView.setAdapter(adapter);
 					currentPage++;
 				} else {

@@ -84,6 +84,7 @@ public class SchoolShow extends Activity {
 				Intent intent = new Intent();
 				intent.putExtra("schoolList", list);
 				intent.putExtra("position", arg2);
+				intent.putExtra("introName", list.get(arg2).getIntroName());
 				intent.setClass(SchoolShow.this, SchoolDetailShow.class);
 				startActivity(intent);
 			}

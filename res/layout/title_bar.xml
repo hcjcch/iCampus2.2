@@ -1,45 +1,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="40dp"
     android:background="#FF222222"
     android:gravity="center_vertical" >
 
-    <TextView
-        android:id="@+id/newsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/newsIcon"
-        android:layout_toRightOf="@+id/newsIcon"
-        android:padding="5dp"
-        android:textSize="28sp" />
-
-    <ImageView
-        android:id="@+id/newsIcon"
+    <Button
+        android:id="@+id/backMain"
         android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/logo" />
-
-    <ImageButton
-        android:id="@+id/refresh"
-        android:layout_width="50dp"
-        android:layout_height="35dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="#FF222222"
-        android:src="@drawable/refresh" />
+        android:background="@drawable/newsicon"/>
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:textColor="#FFFFFF"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="18dp"
-        android:layout_toRightOf="@+id/newsTitle"
-        android:text="北信新闻" />
+        android:text="北信新闻"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
 
 </RelativeLayout>

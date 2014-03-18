@@ -20,7 +20,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -41,7 +41,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.icampus2_2.NewsDetail" >
+        <activity android:name="com.example.icampus2_2.NewsDetail"
+            android:icon="@drawable/logo" >
         </activity>
         <activity
             android:name="com.example.icampus2_2.MainActivity"
@@ -52,7 +53,9 @@
             android:icon="@drawable/logo"
             android:label="学院" >
         </activity>
-        <activity android:name="cn.edu.bistu.school.SchoolDetailShow" >
+        <activity
+            android:name="cn.edu.bistu.school.SchoolDetailShow"
+            android:icon="@drawable/logo" >
         </activity>
         <activity
             android:name="cn.edu.bistu.yellowPage.YellowPageShow"
@@ -68,11 +71,12 @@
         </activity>
         <activity
             android:name="cn.edu.bistu.bus.BusShow"
-            android:label="校车"
-            android:icon="@drawable/logo" >
+            android:icon="@drawable/logo"
+            android:label="校车" >
         </activity>
-        <activity android:name="cn.edu.bistu.bus.BusDetail" 
-            android:icon="@drawable/logo">
+        <activity
+            android:name="cn.edu.bistu.bus.BusDetail"
+            android:icon="@drawable/logo" >
         </activity>
     </application>
 

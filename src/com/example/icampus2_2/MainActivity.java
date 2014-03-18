@@ -8,46 +8,40 @@ import cn.edu.bistu.newsdata.JsonNewschannel;
 import cn.edu.bistu.newsdata.NewschannelType;
 
 import com.viewpagerindicator.TabPageIndicator;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.app.ActionBar;
-import android.os.Build;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
+import android.widget.Button;
 
 public class MainActivity extends FragmentActivity {
 
-	private ImageButton refresh;
 	final static String[] NEWSCHANNEL = { "学校要闻", "人才培养", "教学科研", "文化活动",
 			"媒体关注", "校园人物" };
 
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	@SuppressLint("NewApi")
+	private Button button;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
-		refresh = (ImageButton) findViewById(R.id.refresh);
-		final Animation animation = AnimationUtils.loadAnimation(this,
-				R.anim.refresh);
-		refresh.setOnClickListener(new OnClickListener() {
+		button = (Button) findViewById(R.id.backMain);
+		button.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				refresh.setVisibility(View.GONE);
-				refresh.setAnimation(animation);
-				refresh.setVisibility(View.VISIBLE);
+				Intent intent = new Intent(MainActivity.this, ICampus.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+						| Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
 			}
 		});
 		FragmentPagerAdapter adapter = new TabPageIndicatorAdapter(

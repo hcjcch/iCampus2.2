@@ -28,6 +28,11 @@ public class BusDetailAdapter extends BaseAdapter{
 		// TODO Auto-generated constructor stub
 	}
 	@Override
+	public boolean isEnabled(int position) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
 		return station.size();

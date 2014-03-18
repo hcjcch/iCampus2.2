@@ -130,8 +130,8 @@ public class BusDetail extends Activity {
 		}
 		try {
 			BusDetailAdapter adapter = new BusDetailAdapter(station, time, this);
-			listView.addHeaderView(header);
-			listView.addFooterView(footer);
+			listView.addHeaderView(header,null,false);
+			listView.addFooterView(footer,null,false);
 			listView.setAdapter(adapter);
 		} catch (Exception e) {
 			// TODO: handle exception
