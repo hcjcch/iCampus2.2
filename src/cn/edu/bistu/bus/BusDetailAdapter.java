@@ -48,7 +48,12 @@ public class BusDetailAdapter extends BaseAdapter{
 		arg1 = LayoutInflater.from(context).inflate(R.layout.bus_detail_item, null);
 		TextView time = (TextView)arg1.findViewById(R.id.time);
 		TextView station = (TextView)arg1.findViewById(R.id.station);
-		time.setText(this.time.get(arg0));
+		String timeString = this.time.get(arg0);
+		if (timeString != null) {
+			time.setText(this.time.get(arg0));
+		}else {
+			time.setText("     ");
+		}
 		station.setText(this.station.get(arg0));
 		return arg1;
 	}

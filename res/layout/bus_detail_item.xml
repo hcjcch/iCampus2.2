@@ -16,8 +16,8 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="35dp"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/time"
         android:src="@drawable/busline1" />
 
     <TextView

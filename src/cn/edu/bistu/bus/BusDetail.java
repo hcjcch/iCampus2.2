@@ -73,7 +73,12 @@ public class BusDetail extends Activity {
 			time.add(b.getValue());
 		}
 		//…Ë÷√listviewÕ∑∫ÕŒ≤
-		headerTime.setText(time.get(0));
+		String timeString = time.get(0);
+		if (timeString.equals("")||timeString == ""||timeString == null) {
+			headerTime.setText("     ");
+		}else {
+			headerTime.setText(time.get(0));
+		}
 		headerStation.setText(station.get(0));
 		footerTime.setText(time.get(time.size()-1));
 		footerStation.setText(station.get(station.size()-1));

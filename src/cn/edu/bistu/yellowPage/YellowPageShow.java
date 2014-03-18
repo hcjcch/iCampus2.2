@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.http.Header;
 
+import cn.edu.bistu.tools.MyProgressDialog;
 import cn.edu.bistu.yellowPageData.JsonYellowPage;
 import cn.edu.bistu.yellowPageData.YelloPage;
 
@@ -30,6 +31,7 @@ public class YellowPageShow extends Activity {
 	private ListView yellowPage;
 	private List<YelloPage> list;
 
+	private MyProgressDialog progressDialog;
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
 	@Override
@@ -40,6 +42,7 @@ public class YellowPageShow extends Activity {
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.show();
+		progressDialog = new MyProgressDialog(this, "正在加载中", "请稍后...", false);
 		init();
 		AsyncHttpClient client = new AsyncHttpClient();
 		client.get("http://m.bistu.edu.cn/newapi/yellowpage.php?action=cat",
@@ -55,6 +58,7 @@ public class YellowPageShow extends Activity {
 					@Override
 					public void onStart() {
 						// TODO Auto-generated method stub
+						progressDialog.show();
 						super.onStart();
 					}
 
@@ -67,6 +71,7 @@ public class YellowPageShow extends Activity {
 						list = yellowPage.getList(information);
 						YellowPageAdapter adapter = new YellowPageAdapter(YellowPageShow.this,list);
 						YellowPageShow.this.yellowPage.setAdapter(adapter);
+						progressDialog.hideAndCancle();
 					}
 				});
 		yellowPage.setOnItemClickListener(new OnItemClickListener() {

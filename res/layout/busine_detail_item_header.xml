@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/headerTime"
+        android:layout_marginLeft="35dp"
         android:src="@drawable/busline0" />
 
     <TextView

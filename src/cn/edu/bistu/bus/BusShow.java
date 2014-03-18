@@ -9,6 +9,7 @@ import cn.edu.bistu.busData.Bus;
 import cn.edu.bistu.busData.CatBus;
 import cn.edu.bistu.busData.EveryBus;
 import cn.edu.bistu.busData.JsonBus;
+import cn.edu.bistu.tools.MyProgressDialog;
 
 import com.example.icampus2_2.ICampus;
 import com.example.icampus2_2.R;
@@ -34,6 +35,7 @@ public class BusShow extends Activity {
 	private CatBus tongQingbus;
 	private CatBus jiaoXueBus;
 	private ArrayList<Object> buses;
+	private MyProgressDialog progressDialog;
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
@@ -45,6 +47,7 @@ public class BusShow extends Activity {
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.show();
+		progressDialog = new MyProgressDialog(this, "正在加载中", "请稍后...", false);
 		init();
 		show();
 	}
@@ -69,6 +72,7 @@ public class BusShow extends Activity {
 					@Override
 					public void onStart() {
 						// TODO Auto-generated method stub
+						progressDialog.show();
 						super.onStart();
 					}
 
@@ -92,6 +96,7 @@ public class BusShow extends Activity {
 						BusListAdapter adapter = new BusListAdapter(
 								BusShow.this, buses);
 						busList.setAdapter(adapter);
+						progressDialog.hideAndCancle();
 					}
 				});
 	}

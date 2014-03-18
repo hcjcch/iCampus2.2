@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.http.Header;
 
+import cn.edu.bistu.tools.MyProgressDialog;
 import cn.edu.bistu.yellowPageData.JsonYellowPagePersonal;
 import cn.edu.bistu.yellowPageData.YelloPagePersonal;
 
@@ -39,6 +40,7 @@ public class ContactPerson extends Activity {
 	private View view;
 	private Dialog aDialog;
 	private int position;
+	private MyProgressDialog progressDialog;
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
@@ -51,6 +53,7 @@ public class ContactPerson extends Activity {
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.show();
+		progressDialog = new MyProgressDialog(this, "正在加载中", "请稍后...", false);
 		Intent intent = getIntent();
 		String depart = intent.getStringExtra("depart");
 		name = intent.getStringExtra("name");
@@ -70,6 +73,7 @@ public class ContactPerson extends Activity {
 					@Override
 					public void onStart() {
 						// TODO Auto-generated method stub
+						progressDialog.show();
 						super.onStart();
 					}
 
@@ -83,6 +87,7 @@ public class ContactPerson extends Activity {
 						ContactPersonAdapter adapter = new ContactPersonAdapter(
 								ContactPerson.this, list);
 						listView.setAdapter(adapter);
+						progressDialog.hideAndCancle();
 					}
 				});
 	}
@@ -95,6 +100,7 @@ public class ContactPerson extends Activity {
 		Button address = (Button) view.findViewById(R.id.addressList);
 		Button cancel = (Button) view.findViewById(R.id.cancel);
 		aDialog = new Dialog(ContactPerson.this);
+		aDialog.setCanceledOnTouchOutside(true);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override

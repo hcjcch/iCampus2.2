@@ -10,6 +10,7 @@ import cn.edu.bistu.newsdata.NewschannelType;
 import com.viewpagerindicator.TabPageIndicator;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -70,10 +71,4 @@ public class MainActivity extends FragmentActivity {
 		return map;
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
 }

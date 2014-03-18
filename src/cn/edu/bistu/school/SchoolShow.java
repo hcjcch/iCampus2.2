@@ -6,6 +6,7 @@ import org.apache.http.Header;
 
 import cn.edu.bistu.schoolData.JsonSchool;
 import cn.edu.bistu.schoolData.School;
+import cn.edu.bistu.tools.MyProgressDialog;
 
 import com.example.icampus2_2.ICampus;
 import com.example.icampus2_2.R;
@@ -29,7 +30,8 @@ import android.widget.ListView;
 public class SchoolShow extends Activity {
 	private ListView schoolListView;
 	private ArrayList<School> list;
-
+	private MyProgressDialog progressDialog;
+	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
 	@Override
@@ -41,6 +43,7 @@ public class SchoolShow extends Activity {
 		ActionBar actionBar = getActionBar();
 		actionBar.show();
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		progressDialog = new MyProgressDialog(this, "正在加载中", "请稍后...", false);
 		AsyncHttpClient client = new AsyncHttpClient();
 		client.get("http://api.bistu.edu.cn/api/api.php?table=collegeintro",
 				new AsyncHttpResponseHandler() {
@@ -55,6 +58,7 @@ public class SchoolShow extends Activity {
 					@Override
 					public void onStart() {
 						// TODO Auto-generated method stub
+						progressDialog.show();
 						super.onStart();
 					}
 
@@ -68,6 +72,7 @@ public class SchoolShow extends Activity {
 						ListviewAdapter adapter = new ListviewAdapter(
 								SchoolShow.this, list);
 						schoolListView.setAdapter(adapter);
+						progressDialog.hideAndCancle();
 					}
 				});
 		schoolListView.setOnItemClickListener(new OnItemClickListener() {

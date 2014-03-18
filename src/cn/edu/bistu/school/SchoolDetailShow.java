@@ -7,11 +7,13 @@ import org.apache.http.Header;
 import cn.edu.bistu.schoolData.JsonSchoolDetail;
 import cn.edu.bistu.schoolData.School;
 import cn.edu.bistu.schoolData.SchoolDetail;
+import cn.edu.bistu.tools.MyProgressDialog;
 
 import com.example.icampus2_2.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+@SuppressLint("NewApi")
 public class SchoolDetailShow extends Activity {
 	private TextView school;
 	private TextView titile;
@@ -28,7 +31,7 @@ public class SchoolDetailShow extends Activity {
 	private ImageButton right;
 	private ArrayList<School> schools;
 	private int position;
-
+	private MyProgressDialog progressDialog;
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class SchoolDetailShow extends Activity {
 		schools = (ArrayList<School>) intent
 				.getSerializableExtra("schoolList");
 		position = intent.getIntExtra("position", 0);
+		progressDialog = new MyProgressDialog(this, "正在加载中", "请稍后...", false);
 		show(position);
 	}
 
@@ -62,6 +66,7 @@ public class SchoolDetailShow extends Activity {
 					@Override
 					public void onStart() {
 						// TODO Auto-generated method stub
+						progressDialog.show();
 						super.onStart();
 					}
 
@@ -75,6 +80,7 @@ public class SchoolDetailShow extends Activity {
 								.getList(information);
 						school.setText(schoolDetail.getIntroCont());
 						titile.setText(schoolDetail.getIntroName());
+						progressDialog.hide();
 					}
 				});
 	}
@@ -107,9 +113,8 @@ public class SchoolDetailShow extends Activity {
 				break;
 			}
 		}
-
 	}
-
+	
 	private void init() {
 		school = (TextView) findViewById(R.id.schoolDetail);
 		titile = (TextView) findViewById(R.id.schoolText);
@@ -118,4 +123,5 @@ public class SchoolDetailShow extends Activity {
 		left.setOnClickListener(new Click());
 		right.setOnClickListener(new Click());
 	}
+	
 }
