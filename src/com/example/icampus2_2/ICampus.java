@@ -9,14 +9,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageView;
 
 public class ICampus extends Activity {
-	private Button news;
-	private Button school;
-	private Button yellowPage;
-	private Button map;
-	private Button bus;
+	private ImageView news;
+	private ImageView school;
+	private ImageView yellowPage;
+	private ImageView map;
+	private ImageView bus;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +27,11 @@ public class ICampus extends Activity {
 	}
 
 	private void init() {
-		map = (Button) findViewById(R.id.map);
-		news = (Button) findViewById(R.id.newsButton);
-		school = (Button) findViewById(R.id.schoolButton);
-		yellowPage = (Button) findViewById(R.id.yellowPageButton);
-		bus = (Button) findViewById(R.id.bus);
+		map = (ImageView) findViewById(R.id.imageView6);
+		news = (ImageView) findViewById(R.id.imageView5);
+		school = (ImageView) findViewById(R.id.imageView2);
+		yellowPage = (ImageView) findViewById(R.id.imageView3);
+		bus = (ImageView) findViewById(R.id.imageView4);
 		news.setOnClickListener(new Click());
 		school.setOnClickListener(new Click());
 		yellowPage.setOnClickListener(new Click());
@@ -46,19 +46,19 @@ public class ICampus extends Activity {
 			// TODO Auto-generated method stub
 			Intent intent = new Intent();
 			switch (v.getId()) {
-			case R.id.newsButton:
+			case R.id.imageView5:
 				intent.setClass(ICampus.this, MainActivity.class);
 				break;
-			case R.id.schoolButton:
+			case R.id.imageView2:
 				intent.setClass(ICampus.this, SchoolShow.class);
 				break;
-			case R.id.yellowPageButton:
+			case R.id.imageView3:
 				intent.setClass(ICampus.this, YellowPageShow.class);
 				break;
-			case R.id.map:
+			case R.id.imageView6:
 				intent.setClass(ICampus.this, BistuMap.class);
 				break;
-			case R.id.bus:
+			case R.id.imageView4:
 				intent.setClass(ICampus.this, BusShow.class);
 			default:
 				break;

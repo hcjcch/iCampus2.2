@@ -145,6 +145,13 @@ public class NewsItem extends Fragment {
 
 	class NewsListAsyncTask extends
 			AsyncTask<String, String, List<NewsListType>> {
+		
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			super.onPreExecute();
+		}
+
 		@Override
 		protected List<NewsListType> doInBackground(String... params) {
 			// TODO Auto-generated method stub

@@ -3,57 +3,126 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/yellowPageButton"
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/schoolButton"
-        android:layout_alignBottom="@+id/schoolButton"
-        android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@+id/schoolButton"
-        android:text="黄页"
-        android:textSize="20sp" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/schoollogo" />
 
-    <Button
-        android:id="@+id/newsButton"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/school" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignRight="@+id/imageView2"
+        android:layout_below="@+id/imageView2"
+        android:gravity="center_horizontal"
+        android:text="学院" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="14dp"
+        android:src="@drawable/yellowpage" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView3"
+        android:layout_alignRight="@+id/imageView3"
+        android:layout_below="@+id/imageView3"
+        android:gravity="center_horizontal"
+        android:text="黄页" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="29dp"
+        android:src="@drawable/buslogo" />
+
+    <ImageView
+        android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="182dp"
-        android:text="新闻"
-        android:textSize="20sp" />
+        android:layout_below="@+id/imageView1"
+        android:layout_marginLeft="29dp"
+        android:src="@drawable/news" />
 
-    <Button
-        android:id="@+id/schoolButton"
+    <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/newsButton"
-        android:layout_alignBottom="@+id/newsButton"
-        android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/newsButton"
-        android:text="学院"
-        android:textSize="20sp" />
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignLeft="@+id/imageView5"
+        android:layout_alignRight="@+id/imageView5"
+        android:gravity="center_horizontal"
+        android:text="新闻" />
 
-    <Button
-        android:id="@+id/map"
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/newsButton"
-        android:layout_below="@+id/newsButton"
-        android:layout_marginTop="24dp"
-        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignLeft="@+id/imageView4"
+        android:layout_alignRight="@+id/imageView4"
+        android:gravity="center_horizontal"
+        android:text="校车" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView2"
+        android:layout_alignLeft="@+id/textView3"
+        android:src="@drawable/map" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/imageView6"
+        android:layout_alignRight="@+id/imageView6"
+        android:gravity="center_horizontal"
         android:text="地图" />
 
-    <Button
-        android:id="@+id/bus"
+    <ImageView
+        android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/map"
-        android:layout_alignBottom="@+id/map"
-        android:layout_alignRight="@+id/schoolButton"
-        android:textSize="20sp"
-        android:text="校车" />
+        android:layout_above="@+id/textView2"
+        android:layout_alignLeft="@+id/textView4"
+        android:src="@drawable/placeholder" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView7"
+        android:layout_alignRight="@+id/imageView7"
+        android:layout_below="@+id/imageView7"
+        android:gravity="center_horizontal"
+        android:text="更多" />
 
 </RelativeLayout>
