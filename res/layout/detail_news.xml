@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:gravity="center_horizontal"
         android:maxLines="2"
-        android:text="TITLE"
+        android:text=""
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="3dp"
-            android:text="DETAIL" />
+            android:text="" />
     </ScrollView>
 
 </RelativeLayout>

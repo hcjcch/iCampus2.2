@@ -7,6 +7,9 @@
         android:id="@+id/relativeLayout1"
         android:layout_width="match_parent"
         android:gravity="center"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:background="@drawable/rect"
         android:layout_height="80dp" >
 

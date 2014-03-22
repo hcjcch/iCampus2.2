@@ -1,51 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="wrap_content" 
+    android:layout_marginTop="4dp"
+    android:paddingBottom="4dp">
 
     <ImageView
         android:id="@+id/busLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/line2"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:paddingBottom="4dp"
         android:src="@drawable/bus" />
 
     <TextView
         android:id="@+id/line1"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_toRightOf="@+id/busLogo"
-        android:gravity="center"
-        android:text="TextView"
-        android:textSize="15sp" />
-
-    <TextView
-        android:id="@+id/goTime"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:gravity="center"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/backTime"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:gravity="center"
-        android:layout_alignLeft="@id/goTime"
-        android:layout_below="@+id/goTime"
+        android:textSize="16sp"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/line2"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_alignBottom="@+id/backTime"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/busLogo"
         android:layout_alignLeft="@+id/line1"
-        android:gravity="center"
-        android:text="TextView"
-        android:textColor="#CCCCCC" />
+        android:textColor="#CCCCCC"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/goTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:textColor="#FF0033"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_toLeftOf="@+id/goTime"
+        android:src="@drawable/depart" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/line2"
+        android:layout_toLeftOf="@+id/backTime"
+        android:src="@drawable/turn" />
+
+    <TextView
+        android:id="@+id/backTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView2"
+        android:layout_toRightOf="@+id/imageView1"
+        android:textColor="#FF6600"
+        android:text="TextView" />
 
 </RelativeLayout>

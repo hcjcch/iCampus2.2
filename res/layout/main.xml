@@ -3,11 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <include
+        android:id="@+id/mainTitle" 
+        layout="@layout/main_title_bar" />
+
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/mainTitle"
         android:layout_centerHorizontal="true"
         android:src="@drawable/schoollogo" />
 
@@ -107,7 +111,7 @@
         android:gravity="center_horizontal"
         android:text="地图" />
 
-    <ImageView
+    <!-- <ImageView
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -123,6 +127,6 @@
         android:layout_alignRight="@+id/imageView7"
         android:layout_below="@+id/imageView7"
         android:gravity="center_horizontal"
-        android:text="更多" />
+        android:text="更多" /> -->
 
 </RelativeLayout>

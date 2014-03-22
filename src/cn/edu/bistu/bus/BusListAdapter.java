@@ -97,11 +97,11 @@ public class BusListAdapter extends BaseAdapter {
 			busItem.line2.setText(everyBus.getBusName());
 			String departTime = everyBus.getDepartTime();
 			String returnTime = everyBus.getReturnTime();
-			busItem.goTimeTextView.setText("Íù£º"+departTime.substring(0,departTime.lastIndexOf(":")));
+			busItem.goTimeTextView.setText(departTime.substring(0,departTime.lastIndexOf(":")));
 			if (!returnTime.equals("null")) {
-				busItem.backTime.setText("·µ£º"+returnTime.substring(0,returnTime.lastIndexOf(":")));
+				busItem.backTime.setText(returnTime.substring(0,returnTime.lastIndexOf(":")));
 			}else {
-				busItem.backTime.setText("·µ£º"+"  -");
+				busItem.backTime.setText("  -");
 			}
 		}
 		return arg1;

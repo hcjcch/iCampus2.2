@@ -34,7 +34,7 @@
         <activity
             android:name="com.example.icampus2_2.ICampus"
             android:label="@string/app_name"
-            android:icon="@drawable/logo"
+            android:icon="@drawable/icampusimgplaceholder"
             android:theme="@style/AppTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
