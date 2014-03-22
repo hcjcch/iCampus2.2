@@ -45,7 +45,7 @@ public class FileUtils {
 
 	public Bitmap getBitmap(String fileName) {
 		return decodeSampledBitmapFromResource(getStorageDirectory()
-				+ File.separator + fileName, 128, 100);
+				+ File.separator + fileName, 200, 150);
 	}
 
 	public Bitmap decodeSampledBitmapFromResource(String filepath,
