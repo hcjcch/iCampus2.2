@@ -41,6 +41,7 @@ public class SchoolShow extends Activity {
 		setContentView(R.layout.school_show);
 		init();
 		ActionBar actionBar = getActionBar();
+		//actionBar.setHomeButtonEnabled(true);
 		actionBar.show();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		progressDialog = new MyProgressDialog(this, "正在加载中", "请稍后...", false);

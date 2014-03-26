@@ -52,6 +52,8 @@ public class ICampus extends Activity {
 				intent.setClass(ICampus.this, MainActivity.class);
 				break;
 			case R.id.imageView2:
+				System.out.println(school.getWidth());
+				System.out.println(school.getHeight());
 				intent.setClass(ICampus.this, SchoolShow.class);
 				break;
 			case R.id.imageView3:

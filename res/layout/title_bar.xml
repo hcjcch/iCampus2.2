@@ -1,16 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="50dp"
     android:background="#FF222222"
     android:gravity="center_vertical" >
-
-    <Button
-        android:id="@+id/backMain"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/newsicon"/>
 
     <TextView
         android:id="@+id/textView1"
@@ -18,8 +10,17 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="北信新闻"
+        android:text="新闻"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/backMain"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/news" />
 
 </RelativeLayout>
