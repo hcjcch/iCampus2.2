@@ -81,6 +81,8 @@
             android:name="cn.edu.bistu.bus.BusDetail"
             android:icon="@drawable/buslogo" >
         </activity>
+        <activity android:name="cn.edu.bistu.about.About"
+            android:icon="@drawable/ic_action_about"></activity>
     </application>
 
 </manifest>
