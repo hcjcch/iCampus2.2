@@ -3,17 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <include
+    <!-- <include
         android:id="@+id/mainTitle"
-        layout="@layout/main_title_bar" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="100dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/school" />
+        layout="@layout/main_title_bar" /> -->
 
     <TextView
         android:id="@+id/textView1"
@@ -125,12 +117,12 @@
         android:src="@drawable/news" />
 
     <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/mainTitle"
-        android:layout_alignParentRight="true"
+        android:id="@+id/imageView2"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_action_about" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="89dp"
+        android:src="@drawable/school" />
 
 </RelativeLayout>

@@ -8,8 +8,10 @@ import cn.edu.bistu.yellowPage.YellowPageShow;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
@@ -19,13 +21,12 @@ public class ICampus extends Activity {
 	private ImageView yellowPage;
 	private ImageView map;
 	private ImageView bus;
-	private ImageView about;
+	//private ImageView about;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
 		init();
 	}
@@ -36,13 +37,13 @@ public class ICampus extends Activity {
 		school = (ImageView) findViewById(R.id.imageView2);
 		yellowPage = (ImageView) findViewById(R.id.imageView3);
 		bus = (ImageView) findViewById(R.id.imageView4);
-		about = (ImageView) findViewById(R.id.imageView1);
+		//about = (ImageView) findViewById(R.id.imageView1);
 		news.setOnClickListener(new Click());
 		school.setOnClickListener(new Click());
 		yellowPage.setOnClickListener(new Click());
 		map.setOnClickListener(new Click());
 		bus.setOnClickListener(new Click());
-		about.setOnClickListener(new Click());
+		//about.setOnClickListener(new Click());
 	}
 
 	class Click implements OnClickListener {
@@ -69,13 +70,32 @@ public class ICampus extends Activity {
 			case R.id.imageView4:
 				intent.setClass(ICampus.this, BusShow.class);
 				break;
-			case R.id.imageView1:
-				intent.setClass(ICampus.this, About.class);
 			default:
 				break;
 			}
 			startActivity(intent);
 		}
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		 MenuInflater inflater = getMenuInflater();  
+	        inflater.inflate(R.menu.icampus, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case R.id.more:
+			Intent intent = new Intent();
+			intent.setClass(ICampus.this, About.class);
+			startActivity(intent);
+			break;
 
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

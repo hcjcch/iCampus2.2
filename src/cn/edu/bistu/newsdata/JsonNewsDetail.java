@@ -63,7 +63,8 @@ public class JsonNewsDetail {
 	}
 
 	public String filterReturn(String parameter) {
-		return parameter.replaceAll("<br/>", "\n");
+		parameter = parameter.replaceAll("<br/>", "\n");
+		return parameter.replaceAll("<br>", "\n");
 	}
 	public String filterReturnInTitle(String parameter) {
 		String string = parameter.replaceAll("<br/>", "");

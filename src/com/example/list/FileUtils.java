@@ -24,7 +24,7 @@ public class FileUtils {
 				Environment.MEDIA_MOUNTED) ? sdRootPath + FOLDER_NAME
 				: dataRootPath + FOLDER_NAME;
 	}
-
+	
 	public void saveBitmap(String fileName, Bitmap bitmap) throws IOException {
 		if (bitmap == null) {
 			return;
