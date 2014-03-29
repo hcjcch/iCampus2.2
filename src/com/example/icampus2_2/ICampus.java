@@ -1,5 +1,7 @@
 package com.example.icampus2_2;
 
+import com.amap.api.location.a;
+
 import cn.edu.bistu.about.About;
 import cn.edu.bistu.bus.BusShow;
 import cn.edu.bistu.map.BistuMap;
@@ -21,7 +23,6 @@ public class ICampus extends Activity {
 	private ImageView yellowPage;
 	private ImageView map;
 	private ImageView bus;
-	//private ImageView about;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +38,11 @@ public class ICampus extends Activity {
 		school = (ImageView) findViewById(R.id.imageView2);
 		yellowPage = (ImageView) findViewById(R.id.imageView3);
 		bus = (ImageView) findViewById(R.id.imageView4);
-		//about = (ImageView) findViewById(R.id.imageView1);
 		news.setOnClickListener(new Click());
 		school.setOnClickListener(new Click());
 		yellowPage.setOnClickListener(new Click());
 		map.setOnClickListener(new Click());
 		bus.setOnClickListener(new Click());
-		//about.setOnClickListener(new Click());
 	}
 
 	class Click implements OnClickListener {
@@ -76,6 +75,7 @@ public class ICampus extends Activity {
 			startActivity(intent);
 		}
 	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
@@ -91,8 +91,9 @@ public class ICampus extends Activity {
 			Intent intent = new Intent();
 			intent.setClass(ICampus.this, About.class);
 			startActivity(intent);
+			/*Update aUpdate = new Update(ICampus.this);
+			aUpdate.checkUpdateInfo();*/
 			break;
-
 		default:
 			break;
 		}

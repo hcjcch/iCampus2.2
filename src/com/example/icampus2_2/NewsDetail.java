@@ -4,7 +4,6 @@ import org.apache.http.Header;
 
 import cn.edu.bistu.newsdata.DetailNewsType;
 import cn.edu.bistu.newsdata.JsonNewsDetail;
-import cn.edu.bistu.tools.MyProgressDialog;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
