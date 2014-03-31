@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 @SuppressLint("NewApi")
@@ -60,6 +61,8 @@ public class IntroCont extends Activity {
 					@Override
 					public void aferFaile() {
 						// TODO Auto-generated method stub
+						WebSettings webSettings = webView.getSettings();
+						webSettings.setDefaultTextEncodingName("utf-8");
 						webView.loadUrl("file://" + getStorageDirectory()
 								+ File.separator + mod + ".html");
 						progressDialog.hide();
@@ -87,6 +90,8 @@ public class IntroCont extends Activity {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+							WebSettings webSettings = webView.getSettings();
+							webSettings.setDefaultTextEncodingName("utf-8");
 							webView.loadUrl("file://" + getStorageDirectory()
 									+ File.separator + mod + ".html");
 						} catch (JSONException e) {

@@ -120,9 +120,8 @@
         android:id="@+id/imageView2"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="26dp"
         android:src="@drawable/school" />
 
 </RelativeLayout>

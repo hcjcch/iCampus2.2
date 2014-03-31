@@ -1,5 +1,7 @@
 package cn.edu.bistu.tools;
 
+import java.io.UnsupportedEncodingException;
+
 import org.apache.http.Header;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -19,7 +21,7 @@ public class AsyncClientControl {
 
 	public void getData() {
 		client.get(url, new AsyncHttpResponseHandler() {
-
+			
 			@Override
 			public void onFailure(int arg0, Header[] arg1, byte[] arg2,
 					Throwable arg3) {
@@ -39,7 +41,15 @@ public class AsyncClientControl {
 			public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
 				// TODO Auto-generated method stub
 				super.onSuccess(arg0, arg1, arg2);
-				back.afterSucceess(new String(arg2));
+				String string = null;
+				try {
+					string = new String(arg2,"UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					System.out.println("×ªÂë´íÎó");
+					e.printStackTrace();
+				}
+				back.afterSucceess(string);
 			}
 		});
 	}

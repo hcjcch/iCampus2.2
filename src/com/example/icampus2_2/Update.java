@@ -27,7 +27,7 @@ import android.widget.ProgressBar;
 @SuppressLint("HandlerLeak")
 public class Update {
 	private Context context;
-	private String apkUrl = "http://zhangmenshiting.baidu.com/data2/music/48354073/365959198000128.mp3?xcode=6f9514dccb2c6c3322fdd5f92fabca8b0dd15ca444190f28";
+	private String apkUrl = "http://m.bistu.edu.cn/iBistu1.0.apk";
 	private Dialog noticeDialog;
 	private String updateMsg = "iBistu有更新";
 	private Dialog downloadDialog;
@@ -42,7 +42,6 @@ public class Update {
 	private int progress;// 进度条
 	private boolean interceptFlag = false;
 	private Thread downLoadThread;// 下载线程
-
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -59,12 +58,13 @@ public class Update {
 		};
 	};
 
-	public Update(Context context) {
+	public Update(Context context,String currentVersionName,String updateVersionName) {
 		this.context = context;
+		updateMsg = "当前版本："+currentVersionName+"  最新版本："+ updateVersionName;
 	}
 
 	// 外部接口让主Activity调用
-	public void checkUpdateInfo() {
+	public void update() {
 		showNoticeDialog();
 	}
 
@@ -169,6 +169,5 @@ public class Update {
 		i.setDataAndType(Uri.parse("file://" + apkfile.toString()),
 				"application/vnd.android.package-archive");
 		context.startActivity(i);
-
 	}
 }
