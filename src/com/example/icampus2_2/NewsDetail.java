@@ -24,6 +24,7 @@ public class NewsDetail extends Activity {
 	private TextView contents;
 	private String url;
 	private String tititle;
+	private TextView updtaeTime;
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
@@ -47,6 +48,7 @@ public class NewsDetail extends Activity {
 		tititle = intent.getStringExtra("tititle");
 		title = (TextView) findViewById(R.id.detailTitle);
 		contents = (TextView) findViewById(R.id.detail);
+		updtaeTime = (TextView)findViewById(R.id.updateime);
 	}
 
 	private void show() {
@@ -62,6 +64,7 @@ public class NewsDetail extends Activity {
 						.getDetailNews(new String(arg2));
 				title.setText(detail.getDoctitle());
 				contents.setText(detail.getDochtmlcon());
+				updtaeTime.setText(detail.getDocreltime());
 			}
 
 			@Override

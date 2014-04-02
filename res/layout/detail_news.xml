@@ -15,14 +15,23 @@
         android:gravity="center_horizontal"
         android:maxLines="2"
         android:text=""
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/updateime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/detailTitle"
+        android:layout_marginTop="5dp"
+        android:text="" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/detailTitle"
+        android:layout_below="@id/updateime"
         android:layout_marginLeft="10dp"
         android:scrollbarStyle="outsideInset" >
 
@@ -33,5 +42,4 @@
             android:lineSpacingExtra="3dp"
             android:text="" />
     </ScrollView>
-
 </RelativeLayout>

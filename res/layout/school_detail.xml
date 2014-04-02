@@ -3,7 +3,8 @@
     android:id="@+id/scrollView1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="5dp"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
     android:scrollbarStyle="outsideInset"
     android:layout_alignParentLeft="true"
     android:layout_alignParentTop="true" >

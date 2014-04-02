@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:paddingLeft="10dp"
     android:paddingTop="5dp"
+    android:background="#FFFFFF"
     android:paddingRight="5dp"
     android:layout_height="match_parent" >
 
@@ -10,6 +11,7 @@
         android:id="@+id/contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:cacheColorHint="#FFFFFF"
         android:scrollbarStyle="outsideInset"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" >
