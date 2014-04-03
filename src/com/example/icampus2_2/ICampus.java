@@ -13,6 +13,9 @@ import cn.edu.bistu.bus.BusShow;
 import cn.edu.bistu.map.BistuMap;
 import cn.edu.bistu.school.SchoolShow;
 import cn.edu.bistu.tools.NetworkLoad;
+import cn.edu.bistu.wifi.Login;
+import cn.edu.bistu.wifi.Logout;
+import cn.edu.bistu.wifi.StatusFile;
 import cn.edu.bistu.yellowPage.YellowPageShow;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -34,6 +37,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class ICampus extends Activity {
@@ -44,6 +48,10 @@ public class ICampus extends Activity {
 	private ImageView bus;
 	private PopupWindow popupWindow;
 	private int screenWidth;
+	private ImageView wifi;
+	private final static int LOGIN_WIFI_REQUEST_CODE_STRING = 1;
+	private final static int LOGOUT_WIFI_REQUEST_CODE_STRING = 2;
+	private StatusFile statusFile;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -51,6 +59,7 @@ public class ICampus extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		statusFile = new StatusFile(ICampus.this);
 		(new UpdateAsynctask()).execute();
 		DisplayMetrics dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -64,11 +73,13 @@ public class ICampus extends Activity {
 		school = (ImageView) findViewById(R.id.imageView2);
 		yellowPage = (ImageView) findViewById(R.id.imageView3);
 		bus = (ImageView) findViewById(R.id.imageView4);
+		wifi = (ImageView) findViewById(R.id.imageView7);
 		news.setOnClickListener(new Click());
 		school.setOnClickListener(new Click());
 		yellowPage.setOnClickListener(new Click());
 		map.setOnClickListener(new Click());
 		bus.setOnClickListener(new Click());
+		wifi.setOnClickListener(new Click());
 	}
 
 	class Click implements OnClickListener {
@@ -80,26 +91,101 @@ public class ICampus extends Activity {
 			switch (v.getId()) {
 			case R.id.imageView5:
 				intent.setClass(ICampus.this, MainActivity.class);
+				startActivity(intent);
 				break;
 			case R.id.imageView2:
 				intent.setClass(ICampus.this, SchoolShow.class);
+				startActivity(intent);
 				break;
 			case R.id.imageView3:
 				intent.setClass(ICampus.this, YellowPageShow.class);
+				startActivity(intent);
 				break;
 			case R.id.imageView6:
 				intent.setClass(ICampus.this, BistuMap.class);
+				startActivity(intent);
 				break;
 			case R.id.imageView4:
 				intent.setClass(ICampus.this, BusShow.class);
+				startActivity(intent);
+				break;
+			case R.id.imageView7:
+				int status = statusFile.readStatus();
+				if (status == 0) {
+					intent.setClass(ICampus.this, Login.class);
+					startActivityForResult(intent,
+							LOGIN_WIFI_REQUEST_CODE_STRING);
+				} else {
+					intent.setClass(ICampus.this, Logout.class);
+					startActivityForResult(intent,
+							LOGOUT_WIFI_REQUEST_CODE_STRING);
+				}
 				break;
 			default:
 				break;
 			}
-			startActivity(intent);
 		}
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case LOGIN_WIFI_REQUEST_CODE_STRING:
+			if (resultCode == RESULT_OK) {
+				switch (data.getIntExtra("status", 0)) {
+				case 0:
+					Toast.makeText(ICampus.this, "Login Successful",
+							Toast.LENGTH_SHORT).show();
+					break;
+				case 1:
+					Toast.makeText(ICampus.this, "已经登录，不能重复登录，请先退出！",
+							Toast.LENGTH_LONG).show();
+					break;
+				case 2:
+					Toast.makeText(ICampus.this, "服务器拒绝，请稍后再试。",
+							Toast.LENGTH_LONG).show();
+				case 3:// 程序执行正常
+					Toast.makeText(ICampus.this, "该用户已经在其他系统登录。",
+							Toast.LENGTH_LONG).show();
+					break;
+				case 4:// 程序执行正常
+					Toast.makeText(ICampus.this, "多次登录错误，请稍候登录。",
+							Toast.LENGTH_LONG).show();
+					break;
+				case 5:// 程序执行正常
+					Toast.makeText(ICampus.this,
+							"登录错误。可能原因：用户名、密码错误；没有退出外网情况下，退出内网，请10分钟之后再尝试登录。",
+							Toast.LENGTH_LONG).show();
+					break;
+				default:
+					Toast.makeText(ICampus.this, "异常！(可能是访问超时，也可能是网络异常！)",
+							Toast.LENGTH_LONG).show();
+					break;
+				}
+			}
+			break;
+		case LOGOUT_WIFI_REQUEST_CODE_STRING:
+			if (resultCode == RESULT_OK) {
+				switch (data.getIntExtra("status", 0)) {
+				case 0:
+					Toast.makeText(ICampus.this, "LogOut Successful",
+							Toast.LENGTH_SHORT).show();
+					break;
+				case 6:
+					Toast.makeText(ICampus.this, "程序异常，已经断开网络,您可以重新登录了！", Toast.LENGTH_SHORT).show();
+					break;
+				default:
+					Toast.makeText(ICampus.this, "程序异常", Toast.LENGTH_SHORT).show();
+					break;
+				}
+			}
+		default:
+			break;
+		}
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
@@ -194,7 +280,8 @@ public class ICampus extends Activity {
 				int currentVersionCode = getVerCode();
 				String currentVersionName = getVerName();
 				if (currentVersionCode < updateType.getVerCode()) {
-					(new Update(ICampus.this, currentVersionName, updateType.getVerName())).update();
+					(new Update(ICampus.this, currentVersionName,
+							updateType.getVerName())).update();
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
