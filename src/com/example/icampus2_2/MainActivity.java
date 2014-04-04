@@ -1,11 +1,7 @@
 package com.example.icampus2_2;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import cn.edu.bistu.newsdata.JsonNewschannel;
-import cn.edu.bistu.newsdata.NewschannelType;
 
 import com.viewpagerindicator.TabPageIndicator;
 

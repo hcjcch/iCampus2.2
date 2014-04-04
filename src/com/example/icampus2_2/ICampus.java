@@ -52,6 +52,7 @@ public class ICampus extends Activity {
 	private final static int LOGIN_WIFI_REQUEST_CODE_STRING = 1;
 	private final static int LOGOUT_WIFI_REQUEST_CODE_STRING = 2;
 	private StatusFile statusFile;
+	private boolean isButtonCheck = false;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -232,7 +233,9 @@ public class ICampus extends Activity {
 						popupWindow.dismiss();
 						break;
 					case 1:
+						isButtonCheck = true;
 						(new UpdateAsynctask()).execute();
+						popupWindow.dismiss();
 					default:
 						break;
 					}
@@ -282,6 +285,10 @@ public class ICampus extends Activity {
 				if (currentVersionCode < updateType.getVerCode()) {
 					(new Update(ICampus.this, currentVersionName,
 							updateType.getVerName())).update();
+				}else {
+					if (isButtonCheck) {
+						Toast.makeText(ICampus.this, "当前已经是最新版本", Toast.LENGTH_SHORT).show();
+					}
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
