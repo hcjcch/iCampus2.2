@@ -9,11 +9,11 @@
     tools:context=".MainActivity" >
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/passwd"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
+        android:layout_alignLeft="@+id/number"
+        android:layout_below="@+id/number"
         android:gravity="center"
         android:hint="密码"
         android:ems="10"
@@ -21,7 +21,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/number"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -33,19 +33,19 @@
     </EditText>
 
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/rememberPasswd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_below="@+id/editText2"
+        android:layout_alignLeft="@+id/passwd"
+        android:layout_below="@+id/passwd"
         android:text="记住密码" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/login"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/checkBox1"
-        android:layout_below="@+id/checkBox1"
+        android:layout_alignLeft="@+id/rememberPasswd"
+        android:layout_below="@+id/rememberPasswd"
         android:text="登录" />
 
 </RelativeLayout>

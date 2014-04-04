@@ -12,22 +12,32 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.message.BasicNameValuePair;
 
+import cn.edu.bistu.tools.MyProgressDialog;
+
 import com.example.icampus2_2.R;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Login extends Activity {
 	private EditText number;
 	private EditText password;
 	private Button login;
 	private Intent intent;
+	private SharedPreferences sharedPreferences;
+	private CheckBox rememberBox;
+	private MyProgressDialog progressDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +45,17 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 		intent = getIntent();
-		number = (EditText) findViewById(R.id.editText1);
-		password = (EditText) findViewById(R.id.editText2);
-		login = (Button) findViewById(R.id.button1);
+		progressDialog = new MyProgressDialog(Login.this,"正在登录","请稍后...",false);
+		sharedPreferences = this.getSharedPreferences("wifiInfo", Context.MODE_PRIVATE);
+		number = (EditText) findViewById(R.id.number);
+		password = (EditText) findViewById(R.id.passwd);
+		login = (Button) findViewById(R.id.login);
+		rememberBox = (CheckBox)findViewById(R.id.rememberPasswd);
+		if (sharedPreferences.getBoolean("remember", false)) {
+			number.setText(sharedPreferences.getString("name", ""));
+			password.setText(sharedPreferences.getString("passwd", ""));
+			rememberBox.setChecked(true);
+		}
 		login.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -45,12 +63,34 @@ public class Login extends Activity {
 				// TODO Auto-generated method stub
 				String name = number.getText().toString();
 				String passwd = password.getText().toString();
+				if (name.equals("")) {
+					Toast.makeText(Login.this, "请输入用户名", Toast.LENGTH_SHORT).show();
+					return;
+				}
+				if (passwd.equals("")) {
+					Toast.makeText(Login.this, "请输入密码", Toast.LENGTH_SHORT).show();
+					return;
+				}
 				List<NameValuePair> params = new ArrayList<NameValuePair>();
 				params.add(new BasicNameValuePair("redirect_url",
 						"http://www.baidu.com"));
 				params.add(new BasicNameValuePair("buttonClicked", "4"));
 				params.add(new BasicNameValuePair("username", name));
 				params.add(new BasicNameValuePair("password", passwd));// 传递参数
+				boolean remember = rememberBox.isChecked();
+				if (remember) {
+					Editor editor = sharedPreferences.edit();
+					editor.putString("name", name);
+					editor.putString("passwd", passwd);
+					editor.putBoolean("remember", true);
+					editor.commit();
+				}else {
+					Editor editor = sharedPreferences.edit();
+					editor.putString("name", "");
+					editor.putString("passwd", "");
+					editor.putBoolean("remember", false);
+					editor.commit();
+				}
 				(new MyAs(params)).execute("https://6.6.6.6/login.html");
 			}
 		});
@@ -64,6 +104,12 @@ public class Login extends Activity {
 			this.params = params;
 		}
 
+		@Override
+		protected void onPreExecute() {
+			// TODO Auto-generated method stub
+			progressDialog.show();
+			super.onPreExecute();
+		}
 		@Override
 		protected String doInBackground(String... arg0) {
 			// TODO Auto-generated method stub
@@ -96,6 +142,7 @@ public class Login extends Activity {
 			if (result.equals("faile")) {
 				intent.putExtra("status", 6);
 				setResult(RESULT_OK, intent);
+				progressDialog.cancel();
 				finish();
 			}
 			Pattern pattern = Pattern.compile("Login Successful");
@@ -105,6 +152,7 @@ public class Login extends Activity {
 				status.writeStatus(1);
 				intent.putExtra("status", 0);
 				setResult(RESULT_OK, intent);
+				progressDialog.cancel();
 				finish();
 			}
 			int a = result.indexOf("statusCode=");
@@ -114,6 +162,7 @@ public class Login extends Activity {
 				a = Integer.parseInt(number);
 				intent.putExtra("status", a);
 				setResult(RESULT_OK, intent);
+				progressDialog.cancel();
 				finish();
 			}
 			super.onPostExecute(result);
