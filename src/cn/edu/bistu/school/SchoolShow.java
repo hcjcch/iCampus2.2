@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -31,7 +32,7 @@ public class SchoolShow extends Activity {
 	private ListView schoolListView;
 	private ArrayList<School> list;
 	private MyProgressDialog progressDialog;
-	
+
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
 	@Override
@@ -41,7 +42,7 @@ public class SchoolShow extends Activity {
 		setContentView(R.layout.school_show);
 		init();
 		ActionBar actionBar = getActionBar();
-		//actionBar.setHomeButtonEnabled(true);
+		// actionBar.setHomeButtonEnabled(true);
 		actionBar.show();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		progressDialog = new MyProgressDialog(this, "正在加载中", "请稍后...", false);
@@ -67,12 +68,18 @@ public class SchoolShow extends Activity {
 					public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
 						// TODO Auto-generated method stub
 						super.onSuccess(arg0, arg1, arg2);
-						JsonSchool school = new JsonSchool();
 						String information = new String(arg2);
-						list = (ArrayList<School>) school.getList(information);
-						ListviewAdapter adapter = new ListviewAdapter(
-								SchoolShow.this, list);
-						schoolListView.setAdapter(adapter);
+						if (information.contains("<HTML>")) {
+							Toast.makeText(SchoolShow.this, "BistuWifi 请登录",
+									Toast.LENGTH_SHORT).show();
+						} else {
+							JsonSchool school = new JsonSchool();
+							list = (ArrayList<School>) school
+									.getList(information);
+							ListviewAdapter adapter = new ListviewAdapter(
+									SchoolShow.this, list);
+							schoolListView.setAdapter(adapter);
+						}
 						progressDialog.hideAndCancle();
 					}
 				});

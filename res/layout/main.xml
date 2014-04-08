@@ -95,7 +95,7 @@
         android:layout_height="55dp"
         android:layout_above="@+id/textView2"
         android:layout_alignLeft="@+id/textView4"
-        android:src="@drawable/placeholder" />
+        android:src="@drawable/wi_fi" />
 
     <TextView
         android:id="@+id/textView6"

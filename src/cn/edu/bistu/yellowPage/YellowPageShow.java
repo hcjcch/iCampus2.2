@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.http.Header;
 
+import cn.edu.bistu.school.SchoolShow;
 import cn.edu.bistu.tools.MyProgressDialog;
 import cn.edu.bistu.yellowPageData.JsonYellowPage;
 import cn.edu.bistu.yellowPageData.YelloPage;
@@ -23,6 +24,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -32,6 +34,7 @@ public class YellowPageShow extends Activity {
 	private List<YelloPage> list;
 
 	private MyProgressDialog progressDialog;
+
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@SuppressLint("NewApi")
 	@Override
@@ -67,10 +70,16 @@ public class YellowPageShow extends Activity {
 						// TODO Auto-generated method stub
 						super.onSuccess(arg0, arg1, arg2);
 						String information = new String(arg2);
-						JsonYellowPage yellowPage = new JsonYellowPage();
-						list = yellowPage.getList(information);
-						YellowPageAdapter adapter = new YellowPageAdapter(YellowPageShow.this,list);
-						YellowPageShow.this.yellowPage.setAdapter(adapter);
+						if (information.contains("<HTML>")) {
+							Toast.makeText(YellowPageShow.this, "BistuWifi ÇëµÇÂ¼",
+									Toast.LENGTH_SHORT).show();
+						} else {
+							JsonYellowPage yellowPage = new JsonYellowPage();
+							list = yellowPage.getList(information);
+							YellowPageAdapter adapter = new YellowPageAdapter(
+									YellowPageShow.this, list);
+							YellowPageShow.this.yellowPage.setAdapter(adapter);
+						}
 						progressDialog.hideAndCancle();
 					}
 				});
@@ -92,6 +101,7 @@ public class YellowPageShow extends Activity {
 	private void init() {
 		yellowPage = (ListView) findViewById(R.id.schooleList);
 	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// TODO Auto-generated method stub
@@ -101,6 +111,7 @@ public class YellowPageShow extends Activity {
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
 					| Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
+			// finish();
 			break;
 
 		default:

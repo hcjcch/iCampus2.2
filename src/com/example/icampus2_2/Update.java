@@ -134,7 +134,7 @@ public class Update {
 				do {
 					int numread = is.read(buf);
 					count += numread;
-					progress = (int) (((float) count / length) * 100);// 进度条progress长度默认为1
+					progress = (int) (((float) count / length) * 100);// 进度条progress长度默认为100
 					// 更新进度
 					mHandler.sendEmptyMessage(DOWN_UPDATE);
 					if (numread <= 0) {

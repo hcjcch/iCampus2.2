@@ -19,6 +19,10 @@ import cn.edu.bistu.wifi.StatusFile;
 import cn.edu.bistu.yellowPage.YellowPageShow;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.BitmapDrawable;
@@ -53,6 +57,8 @@ public class ICampus extends Activity {
 	private final static int LOGOUT_WIFI_REQUEST_CODE_STRING = 2;
 	private StatusFile statusFile;
 	private boolean isButtonCheck = false;
+	private static boolean first = true;
+	private Net net;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -61,11 +67,56 @@ public class ICampus extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		statusFile = new StatusFile(ICampus.this);
-		(new UpdateAsynctask()).execute();
+		if (first) {
+			Intent intent = getIntent();
+			net = (Net) intent.getSerializableExtra("net");
+			if (net.isNet()) {
+				(new UpdateAsynctask()).execute();
+			} else {
+				showNoNet();
+			}
+			first = false;
+		}
 		DisplayMetrics dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		screenWidth = dm.widthPixels;
 		init();
+	}
+
+	private void showNoNet() {
+		Builder builder = new AlertDialog.Builder(ICampus.this)
+				.setTitle("网络提示信息")
+				.setMessage("网络不可用，如果继续，请先设置网络！")
+				.setIcon(R.drawable.ic_action_about)
+				.setPositiveButton("设置", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						Intent intent = new Intent();
+						if (android.os.Build.VERSION.SDK_INT > 10) {
+							intent = new Intent(
+									android.provider.Settings.ACTION_WIFI_SETTINGS);
+						} else {
+							intent = new Intent();
+							ComponentName component = new ComponentName(
+									"com.android.settings",
+									"com.android.settings.WirelessSettings");
+							intent.setComponent(component);
+							intent.setAction("android.intent.action.VIEW");
+						}
+						startActivity(intent);
+					}
+				})
+				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+
+					}
+				});
+		builder.create();
+		builder.show();
 	}
 
 	private void init() {
@@ -143,6 +194,8 @@ public class ICampus extends Activity {
 				case 1:
 					Toast.makeText(ICampus.this, "已经登录，不能重复登录，请先退出！",
 							Toast.LENGTH_LONG).show();
+					StatusFile status = new StatusFile(ICampus.this);
+					status.writeStatus(1);
 					break;
 				case 2:
 					Toast.makeText(ICampus.this, "服务器拒绝，请稍后再试。",
@@ -175,10 +228,12 @@ public class ICampus extends Activity {
 							Toast.LENGTH_SHORT).show();
 					break;
 				case 6:
-					Toast.makeText(ICampus.this, "程序异常，已经断开网络,您可以重新登录了！", Toast.LENGTH_SHORT).show();
+					Toast.makeText(ICampus.this, "程序异常，已经断开网络,您可以重新登录了！",
+							Toast.LENGTH_SHORT).show();
 					break;
 				default:
-					Toast.makeText(ICampus.this, "程序异常", Toast.LENGTH_SHORT).show();
+					Toast.makeText(ICampus.this, "程序异常", Toast.LENGTH_SHORT)
+							.show();
 					break;
 				}
 			}
@@ -186,7 +241,7 @@ public class ICampus extends Activity {
 			break;
 		}
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
@@ -285,9 +340,10 @@ public class ICampus extends Activity {
 				if (currentVersionCode < updateType.getVerCode()) {
 					(new Update(ICampus.this, currentVersionName,
 							updateType.getVerName())).update();
-				}else {
+				} else {
 					if (isButtonCheck) {
-						Toast.makeText(ICampus.this, "当前已经是最新版本", Toast.LENGTH_SHORT).show();
+						Toast.makeText(ICampus.this, "当前已经是最新版本",
+								Toast.LENGTH_SHORT).show();
 					}
 				}
 			} catch (JSONException e) {

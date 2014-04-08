@@ -10,7 +10,6 @@ import cn.edu.bistu.busData.CatBus;
 import cn.edu.bistu.busData.EveryBus;
 import cn.edu.bistu.busData.JsonBus;
 import cn.edu.bistu.tools.MyProgressDialog;
-
 import com.example.icampus2_2.ICampus;
 import com.example.icampus2_2.R;
 import com.loopj.android.http.AsyncHttpClient;
@@ -26,6 +25,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -81,21 +81,26 @@ public class BusShow extends Activity {
 						// TODO Auto-generated method stub
 						super.onSuccess(arg0, arg1, arg2);
 						String string = new String(arg2);
-						bus = (new JsonBus()).getList(string);
-						tongQingbus = bus.get(0).getCatbus();
-						jiaoXueBus = bus.get(1).getCatbus();
-						buses = new ArrayList<Object>();
-						buses.add("通勤班车");
-						for (EveryBus everyBus : tongQingbus.getCatbus()) {
-							buses.add(everyBus);
+						if (string.contains("<HTML>")) {
+							Toast.makeText(BusShow.this, "BistuWifi 请登录",
+									Toast.LENGTH_SHORT).show();
+						}else {
+							bus = (new JsonBus()).getList(string);
+							tongQingbus = bus.get(0).getCatbus();
+							jiaoXueBus = bus.get(1).getCatbus();
+							buses = new ArrayList<Object>();
+							buses.add("通勤班车");
+							for (EveryBus everyBus : tongQingbus.getCatbus()) {
+								buses.add(everyBus);
+							}
+							buses.add("教学班车");
+							for (EveryBus everyBus : jiaoXueBus.getCatbus()) {
+								buses.add(everyBus);
+							}
+							BusListAdapter adapter = new BusListAdapter(
+									BusShow.this, buses);
+							busList.setAdapter(adapter);
 						}
-						buses.add("教学班车");
-						for (EveryBus everyBus : jiaoXueBus.getCatbus()) {
-							buses.add(everyBus);
-						}
-						BusListAdapter adapter = new BusListAdapter(
-								BusShow.this, buses);
-						busList.setAdapter(adapter);
 						progressDialog.hideAndCancle();
 					}
 				});
