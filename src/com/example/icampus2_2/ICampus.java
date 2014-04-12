@@ -59,7 +59,6 @@ public class ICampus extends Activity {
 	private boolean isButtonCheck = false;
 	private static boolean first = true;
 	private Net net;
-
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -341,6 +340,7 @@ public class ICampus extends Activity {
 					(new Update(ICampus.this, currentVersionName,
 							updateType.getVerName())).update();
 				} else {
+					// 判断是不是用户检查更新
 					if (isButtonCheck) {
 						Toast.makeText(ICampus.this, "当前已经是最新版本",
 								Toast.LENGTH_SHORT).show();

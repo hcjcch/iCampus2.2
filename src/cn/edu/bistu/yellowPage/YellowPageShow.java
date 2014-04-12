@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.http.Header;
 
-import cn.edu.bistu.school.SchoolShow;
 import cn.edu.bistu.tools.MyProgressDialog;
 import cn.edu.bistu.yellowPageData.JsonYellowPage;
 import cn.edu.bistu.yellowPageData.YelloPage;

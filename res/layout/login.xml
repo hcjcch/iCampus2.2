@@ -48,4 +48,20 @@
         android:layout_below="@+id/rememberPasswd"
         android:text="登录" />
 
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/login"
+        android:layout_below="@+id/login" />
+
+    <TextView
+        android:id="@+id/jindu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/progressBar1"
+        android:layout_toRightOf="@+id/progressBar1"
+        android:text="登录中" />
+
 </RelativeLayout>
