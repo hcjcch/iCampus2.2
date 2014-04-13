@@ -243,8 +243,8 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 	class MyThread extends Thread {
 		@Override
 		public void run() {
-			System.out.println(mWifiInfo);
-			System.err.println("!!!!!!");
+			//System.out.println(mWifiInfo.getSSID());
+			System.out.println("!!!!!!");
 			if (mWifiInfo !=null && mWifiInfo.getSSID()!=null&&mWifiInfo.getSSID().equals("bistu")) {
 				Message msg =new Message();
 				msg.what = -1;
@@ -286,9 +286,9 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 				return;
 			}
 			System.out.println("^^^^^^^^^^^^^^");
-			int netId = mWifiManager.addNetwork(formerConfiguration);
-			boolean bRet = mWifiManager.enableNetwork(netId, true);
-			System.out.println(mWifiInfo);
+			//int netId = mWifiManager.addNetwork(formerConfiguration);
+			boolean bRet = mWifiManager.enableNetwork(formerConfiguration.networkId, true);
+			System.out.println(mWifiManager.getConnectionInfo().getSSID());
 			System.out.println(bRet);
 			if (bRet == true) {
 				Message msg =new Message();

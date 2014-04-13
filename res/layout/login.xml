@@ -62,6 +62,14 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/progressBar1"
         android:layout_toRightOf="@+id/progressBar1"
-        android:text="登录中" />
+        android:text="" />
+
+    <CheckBox
+        android:id="@+id/lookPasswd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/login"
+        android:layout_alignRight="@+id/login"
+        android:text="显示密码" />
 
 </RelativeLayout>

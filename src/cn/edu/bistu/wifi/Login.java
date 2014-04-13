@@ -24,11 +24,16 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +47,9 @@ public class Login extends Activity {
 	private Handler handler;
 	List<NameValuePair> params = new ArrayList<NameValuePair>();
 	private TextView textView;
-
+	private int status = 0;
+	private ProgressBar bar;
+	private CheckBox lookPasswd;
 	@SuppressLint("HandlerLeak")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +65,26 @@ public class Login extends Activity {
 		login = (Button) findViewById(R.id.login);
 		rememberBox = (CheckBox) findViewById(R.id.rememberPasswd);
 		textView = (TextView) findViewById(R.id.jindu);
+		bar = (ProgressBar)findViewById(R.id.progressBar1);
+		lookPasswd = (CheckBox)findViewById(R.id.lookPasswd);
+		bar.setVisibility(View.GONE);
 		if (sharedPreferences.getBoolean("remember", false)) {
 			number.setText(sharedPreferences.getString("name", ""));
 			password.setText(sharedPreferences.getString("passwd", ""));
 			rememberBox.setChecked(true);
 		}
+		lookPasswd.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				if (lookPasswd.isChecked()) {
+					password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+				}else {
+					password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+				}
+			}
+		});
 		handler = new Handler() {
 			@Override
 			public void handleMessage(Message msg) {
@@ -71,6 +93,7 @@ public class Login extends Activity {
 				switch (msg.what) {
 				case -1:
 					textView.setText("正在登录2wifi！");
+					status = 1;
 					(new MyAs()).execute("https://6.6.6.6/login.html");
 					break;
 				case 0:
@@ -79,6 +102,7 @@ public class Login extends Activity {
 				case 1:
 					Toast.makeText(Login.this, "wifi打开失败!", Toast.LENGTH_SHORT)
 							.show();
+					finish();
 					break;
 				case 2:
 					textView.setText("正在连接wifi！");
@@ -86,14 +110,17 @@ public class Login extends Activity {
 				case 3:
 					Toast.makeText(Login.this, "wifi列表中无bistu配置!",
 							Toast.LENGTH_SHORT).show();
+					finish();
 					break;
 				case 5:
 					textView.setText("正在登录1wifi！");
+					status = 0;
 					(new MyAs()).execute("https://6.6.6.6/login.html");
 					break;
 				case 6:
 					Toast.makeText(Login.this, "wifi连接失败!", Toast.LENGTH_SHORT)
 							.show();
+					finish();
 					break;
 
 				default:
@@ -107,6 +134,12 @@ public class Login extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				bar.setVisibility(View.VISIBLE);
+				number.setEnabled(false);
+				password.setEnabled(false);
+				rememberBox.setEnabled(false);
+				login.setEnabled(false);
+				lookPasswd.setEnabled(false);
 				String name = number.getText().toString();
 				String passwd = password.getText().toString();
 				if (name.equals("")) {
@@ -155,11 +188,13 @@ public class Login extends Activity {
 		@Override
 		protected String doInBackground(String... arg0) {
 			// TODO Auto-generated method stub
-			try {
-				Thread.sleep(9000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			if (status == 0) {
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			MyHttpClient httpClient = new MyHttpClient();
 			try {
@@ -187,7 +222,7 @@ public class Login extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
-			System.out.println(result);
+			//System.out.println(result);
 			if (result.equals("faile")) {
 				intent.putExtra("status", 6);
 				setResult(RESULT_OK, intent);
@@ -211,6 +246,7 @@ public class Login extends Activity {
 				setResult(RESULT_OK, intent);
 				finish();
 			}
+			
 			super.onPostExecute(result);
 		}
 	}

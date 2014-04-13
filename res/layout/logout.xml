@@ -7,7 +7,9 @@
         android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_margin="5dp"
+		android:gravity="center_horizontal"
+		android:textSize="15sp"
         android:layout_alignParentTop="true"
         android:text="您已经登录，确定退出？" />
 
@@ -16,6 +18,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
+        android:layout_marginTop="5dp"
         android:text="登出" />
 
 </RelativeLayout>
