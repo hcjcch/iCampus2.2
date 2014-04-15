@@ -28,8 +28,11 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 	public WifiAdmin(Context context, Handler handler) {
 		mWifiManager = (WifiManager) context
 				.getSystemService(Context.WIFI_SERVICE); // 取得WifiManager对象
-		mWifiInfo = mWifiManager.getConnectionInfo(); // 取得WifiInfo对象
 		this.handler = handler;
+	}
+
+	public WifiInfo getWifiInfo() {
+		return mWifiManager.getConnectionInfo();
 	}
 
 	// 打开WIFI
@@ -146,7 +149,7 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 	}
 
 	// 得到WifiInfo的所有信息包
-	public String getWifiInfo() {
+	public String getWifiInfotoString() {
 		return (mWifiInfo == null) ? "NULL" : mWifiInfo.toString();
 	}
 
@@ -173,59 +176,6 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 		return mWifiManager.removeNetwork(configuration.networkId);
 	}
 
-	/*public enum WifiCipherType {
-		WIFICIPHER_WEP, WIFICIPHER_WPA, WIFICIPHER_NOPASS, WIFICIPHER_INVALID
-	}*/
-
-	/*public WifiConfiguration createWifiConfig(String SSID, String passwd,
-			WifiCipherType type) {
-		WifiConfiguration configuration = new WifiConfiguration();
-		configuration.allowedAuthAlgorithms.clear();
-		configuration.allowedGroupCiphers.clear();
-		configuration.allowedKeyManagement.clear();
-		configuration.allowedPairwiseCiphers.clear();
-		configuration.allowedProtocols.clear();
-		configuration.SSID = "\"" + SSID + "\"";
-		if (type == WifiCipherType.WIFICIPHER_NOPASS) {
-			configuration.wepKeys[0] = "";
-			configuration.allowedKeyManagement
-					.set(WifiConfiguration.KeyMgmt.NONE);
-			configuration.wepTxKeyIndex = 0;
-		} else if (type == WifiCipherType.WIFICIPHER_WEP) {
-			configuration.preSharedKey = "\"" + passwd + "\"";
-			configuration.hiddenSSID = true;
-			configuration.allowedAuthAlgorithms
-					.set(WifiConfiguration.AuthAlgorithm.SHARED);
-			configuration.allowedGroupCiphers
-					.set(WifiConfiguration.GroupCipher.CCMP);
-			configuration.allowedGroupCiphers
-					.set(WifiConfiguration.GroupCipher.TKIP);
-			configuration.allowedGroupCiphers
-					.set(WifiConfiguration.GroupCipher.WEP40);
-			configuration.allowedGroupCiphers
-					.set(WifiConfiguration.GroupCipher.WEP104);
-			configuration.allowedKeyManagement
-					.set(WifiConfiguration.KeyMgmt.NONE);
-			configuration.wepTxKeyIndex = 0;
-		} else if (type == WifiCipherType.WIFICIPHER_WPA) {
-			configuration.preSharedKey = "\"" + passwd + "\"";
-			configuration.hiddenSSID = true;
-			configuration.allowedAuthAlgorithms
-					.set(WifiConfiguration.AuthAlgorithm.OPEN);
-			configuration.allowedGroupCiphers
-					.set(WifiConfiguration.GroupCipher.TKIP);
-			configuration.allowedKeyManagement
-					.set(WifiConfiguration.KeyMgmt.WPA_PSK);
-			configuration.allowedPairwiseCiphers
-					.set(WifiConfiguration.PairwiseCipher.TKIP);
-			configuration.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
-			configuration.status = WifiConfiguration.Status.ENABLED;
-		} else {
-			return null;
-		}
-		return configuration;
-	}*/
-
 	public void connect() {
 		(new MyThread()).start();
 	}
@@ -243,23 +193,26 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 	class MyThread extends Thread {
 		@Override
 		public void run() {
-			//System.out.println(mWifiInfo.getSSID());
+			
 			System.out.println("!!!!!!");
-			if (mWifiInfo !=null && mWifiInfo.getSSID()!=null&&mWifiInfo.getSSID().equals("bistu")) {
-				Message msg =new Message();
+			
+			mWifiInfo = getWifiInfo();
+			if (mWifiInfo != null && mWifiInfo.getSSID() != null
+					&& mWifiInfo.getSSID().equals("bistu")) {
+				Message msg = new Message();
 				msg.what = -1;
 				handler.sendMessage(msg);
 				return;
-				}
+			}
 			System.out.println("@@@@@@");
 			if (mWifiManager.getWifiState() == 1) {
-				Message msg =new Message();
+				Message msg = new Message();
 				msg.what = 0;
 				handler.sendMessage(msg);
 			}
 			System.out.println("#######");
 			if (!openWifi()) {
-				Message msg =new Message();
+				Message msg = new Message();
 				msg.what = 1;
 				handler.sendMessage(msg);
 				return;
@@ -274,28 +227,67 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 					e.printStackTrace();
 				}
 			}
+			System.out.println(mWifiList == null);
+			while (mWifiList == null) {
+				try {
+					startScan();
+					Thread.currentThread();
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+			}
+			// System.out.println("()()()()()"+lookUpScan());
+			if (!mWifiList.toString().contains("bistu")) {
+				Message msg = new Message();
+				msg.what = 7;
+				handler.sendMessage(msg);
+				return;
+			}
+
 			System.out.println("%%%%%%%%%%%%");
-			Message msg1 =new Message();
+			
+			Message msg1 = new Message();
 			msg1.what = 2;
 			handler.sendMessage(msg1);
+
 			WifiConfiguration formerConfiguration = isExsites("bistu");
 			if (formerConfiguration == null) {
-				Message msg =new Message();
+				Message msg = new Message();
 				msg.what = 3;
 				handler.sendMessage(msg);
 				return;
 			}
+
 			System.out.println("^^^^^^^^^^^^^^");
-			//int netId = mWifiManager.addNetwork(formerConfiguration);
-			boolean bRet = mWifiManager.enableNetwork(formerConfiguration.networkId, true);
-			System.out.println(mWifiManager.getConnectionInfo().getSSID());
+			// int netId = mWifiManager.addNetwork(formerConfiguration);
+			boolean bRet = mWifiManager.enableNetwork(
+					formerConfiguration.networkId, true);
+			// System.out.println(mWifiManager.getConnectionInfo().getSSID());
 			System.out.println(bRet);
 			if (bRet == true) {
-				Message msg =new Message();
+				try {
+					while (mWifiInfo.getSSID() == null || !mWifiInfo.getSSID().equals("bistu")) {
+						try {
+							mWifiInfo = getWifiInfo();
+							Thread.sleep(100);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+				System.out.println(getWifiInfo().getSSID());
+				System.out.println("AAAAAAAAAAAAAAAAA");
+				Message msg = new Message();
 				msg.what = 5;
 				handler.sendMessage(msg);
-			}else {
-				Message msg =new Message();
+			} else {
+				Message msg = new Message();
 				msg.what = 6;
 				handler.sendMessage(msg);
 			}

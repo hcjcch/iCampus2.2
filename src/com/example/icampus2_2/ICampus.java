@@ -213,7 +213,7 @@ public class ICampus extends Activity {
 							Toast.LENGTH_LONG).show();
 					break;
 				default:
-					Toast.makeText(ICampus.this, "异常！(可能是访问超时，也可能是网络异常！)",
+					Toast.makeText(ICampus.this, "异常！(可能是访问超时，也可能是网络异常！)请重新登录！",
 							Toast.LENGTH_LONG).show();
 					break;
 				}

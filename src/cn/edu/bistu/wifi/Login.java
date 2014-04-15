@@ -20,6 +20,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -50,6 +52,7 @@ public class Login extends Activity {
 	private int status = 0;
 	private ProgressBar bar;
 	private CheckBox lookPasswd;
+
 	@SuppressLint("HandlerLeak")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +68,8 @@ public class Login extends Activity {
 		login = (Button) findViewById(R.id.login);
 		rememberBox = (CheckBox) findViewById(R.id.rememberPasswd);
 		textView = (TextView) findViewById(R.id.jindu);
-		bar = (ProgressBar)findViewById(R.id.progressBar1);
-		lookPasswd = (CheckBox)findViewById(R.id.lookPasswd);
+		bar = (ProgressBar) findViewById(R.id.progressBar1);
+		lookPasswd = (CheckBox) findViewById(R.id.lookPasswd);
 		bar.setVisibility(View.GONE);
 		if (sharedPreferences.getBoolean("remember", false)) {
 			number.setText(sharedPreferences.getString("name", ""));
@@ -74,14 +77,17 @@ public class Login extends Activity {
 			rememberBox.setChecked(true);
 		}
 		lookPasswd.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
+
 			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
 				// TODO Auto-generated method stub
 				if (lookPasswd.isChecked()) {
-					password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-				}else {
-					password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+					password.setTransformationMethod(HideReturnsTransformationMethod
+							.getInstance());
+				} else {
+					password.setTransformationMethod(PasswordTransformationMethod
+							.getInstance());
 				}
 			}
 		});
@@ -122,7 +128,11 @@ public class Login extends Activity {
 							.show();
 					finish();
 					break;
-
+				case 7:
+					Toast.makeText(Login.this, "¸½½üÎÞbistu wifi!",
+							Toast.LENGTH_SHORT).show();
+					finish();
+					break;
 				default:
 					break;
 				}
@@ -189,11 +199,13 @@ public class Login extends Activity {
 		protected String doInBackground(String... arg0) {
 			// TODO Auto-generated method stub
 			if (status == 0) {
-				try {
-					Thread.sleep(5000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				while(!isWifiConnect()){
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			}
 			MyHttpClient httpClient = new MyHttpClient();
@@ -222,7 +234,7 @@ public class Login extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
-			//System.out.println(result);
+			// System.out.println(result);
 			if (result.equals("faile")) {
 				intent.putExtra("status", 6);
 				setResult(RESULT_OK, intent);
@@ -246,8 +258,15 @@ public class Login extends Activity {
 				setResult(RESULT_OK, intent);
 				finish();
 			}
-			
+
 			super.onPostExecute(result);
 		}
+	}
+
+	public boolean isWifiConnect() {
+		ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+		NetworkInfo mWifi = connManager
+				.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+		return mWifi.isConnected();
 	}
 }

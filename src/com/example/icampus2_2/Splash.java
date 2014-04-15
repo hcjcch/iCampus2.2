@@ -9,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo.State;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Window;
@@ -108,6 +110,20 @@ public class Splash extends Activity {
 			intent.setClass(Splash.this, ICampus.class);
 			startActivity(intent);
 			Splash.this.finish();
+		}
+	}
+
+	public static boolean isWiFiActive(Context inContext) {
+		WifiManager mWifiManager = (WifiManager) inContext
+				.getSystemService(Context.WIFI_SERVICE);
+		WifiInfo wifiInfo = mWifiManager.getConnectionInfo();
+		int ipAddress = wifiInfo == null ? 0 : wifiInfo.getIpAddress();
+		if (mWifiManager.isWifiEnabled() && ipAddress != 0) {
+			System.out.println("**** WIFI is on");
+			return true;
+		} else {
+			System.out.println("**** WIFI is off");
+			return false;
 		}
 	}
 }
