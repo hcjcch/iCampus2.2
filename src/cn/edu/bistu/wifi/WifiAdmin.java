@@ -193,9 +193,9 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 	class MyThread extends Thread {
 		@Override
 		public void run() {
-			
+
 			System.out.println("!!!!!!");
-			
+
 			mWifiInfo = getWifiInfo();
 			if (mWifiInfo != null && mWifiInfo.getSSID() != null
 					&& mWifiInfo.getSSID().equals("bistu")) {
@@ -247,7 +247,7 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 			}
 
 			System.out.println("%%%%%%%%%%%%");
-			
+
 			Message msg1 = new Message();
 			msg1.what = 2;
 			handler.sendMessage(msg1);
@@ -268,7 +268,8 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 			System.out.println(bRet);
 			if (bRet == true) {
 				try {
-					while (mWifiInfo.getSSID() == null || !mWifiInfo.getSSID().equals("bistu")) {
+					while (mWifiInfo.getSSID() == null
+							|| !mWifiInfo.getSSID().equals("bistu")) {
 						try {
 							mWifiInfo = getWifiInfo();
 							Thread.sleep(100);
@@ -291,6 +292,38 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 				msg.what = 6;
 				handler.sendMessage(msg);
 			}
+		}
+	}
+
+	public void logOut() {
+		(new LogoutThread()).start();
+	}
+
+	class LogoutThread extends Thread {
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			System.out.println("111111111111");
+			mWifiInfo = getWifiInfo();
+			if (mWifiInfo.getSSID() == null) {
+				Message message = new Message();
+				message.what = 0;
+				handler.sendMessage(message);
+				return;
+			}
+			System.out.println("22222222222");
+			if (mWifiInfo.getSSID().equals("bistu")) {
+				Message message = new Message();
+				message.what = 1;
+				handler.sendMessage(message);
+				return;
+			} else {
+				Message message = new Message();
+				message.what = 2;
+				message.obj = mWifiInfo.getSSID();
+				handler.sendMessage(message);
+			}
+			super.run();
 		}
 	}
 }

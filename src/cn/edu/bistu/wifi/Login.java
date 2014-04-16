@@ -98,7 +98,7 @@ public class Login extends Activity {
 				// System.out.println(msg.what);
 				switch (msg.what) {
 				case -1:
-					textView.setText("正在登录2wifi！");
+					textView.setText("正在登录bistu wifi！");
 					status = 1;
 					(new MyAs()).execute("https://6.6.6.6/login.html");
 					break;
@@ -111,7 +111,7 @@ public class Login extends Activity {
 					finish();
 					break;
 				case 2:
-					textView.setText("正在连接wifi！");
+					textView.setText("正在连接bistu wifi！");
 					break;
 				case 3:
 					Toast.makeText(Login.this, "wifi列表中无bistu配置!",
@@ -119,7 +119,7 @@ public class Login extends Activity {
 					finish();
 					break;
 				case 5:
-					textView.setText("正在登录1wifi！");
+					textView.setText("正在登录bistu wifi！");
 					status = 0;
 					(new MyAs()).execute("https://6.6.6.6/login.html");
 					break;
