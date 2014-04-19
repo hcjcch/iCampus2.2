@@ -129,8 +129,8 @@ public class Login extends Activity {
 					finish();
 					break;
 				case 7:
-					Toast.makeText(Login.this, "附近无bistu wifi!",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(Login.this, "附近无bistu wifi!如果您确信附近有bistu wifi请再次点击！",
+							Toast.LENGTH_LONG).show();
 					finish();
 					break;
 				default:

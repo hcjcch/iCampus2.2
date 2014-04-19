@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView2"
-        android:text="如有任何建议请联系webmaster@bistu.edu.cn。"
+        android:text="如有任何建议请联系webmaster@bistu.edu.cn。\n功能问题请在http://weibo.com/iflab上留言或加qq(764951578)"
         android:textSize="16sp" />
 
     <ListView

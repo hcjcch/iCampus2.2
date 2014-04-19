@@ -227,7 +227,6 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 					e.printStackTrace();
 				}
 			}
-			System.out.println(mWifiList == null);
 			while (mWifiList == null) {
 				try {
 					startScan();
@@ -238,15 +237,12 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 					e.printStackTrace();
 				}
 			}
-			// System.out.println("()()()()()"+lookUpScan());
 			if (!mWifiList.toString().contains("bistu")) {
 				Message msg = new Message();
 				msg.what = 7;
 				handler.sendMessage(msg);
 				return;
 			}
-
-			System.out.println("%%%%%%%%%%%%");
 
 			Message msg1 = new Message();
 			msg1.what = 2;
@@ -264,12 +260,12 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 			// int netId = mWifiManager.addNetwork(formerConfiguration);
 			boolean bRet = mWifiManager.enableNetwork(
 					formerConfiguration.networkId, true);
-			// System.out.println(mWifiManager.getConnectionInfo().getSSID());
 			System.out.println(bRet);
 			if (bRet == true) {
 				try {
 					while (mWifiInfo.getSSID() == null
-							|| !mWifiInfo.getSSID().equals("bistu")) {
+							|| (!mWifiInfo.getSSID().equals("bistu") && !mWifiInfo
+									.getSSID().equals("\"bistu\""))) {
 						try {
 							mWifiInfo = getWifiInfo();
 							Thread.sleep(100);
@@ -283,7 +279,6 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 					e.printStackTrace();
 				}
 				System.out.println(getWifiInfo().getSSID());
-				System.out.println("AAAAAAAAAAAAAAAAA");
 				Message msg = new Message();
 				msg.what = 5;
 				handler.sendMessage(msg);
@@ -303,7 +298,6 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
-			System.out.println("111111111111");
 			mWifiInfo = getWifiInfo();
 			if (mWifiInfo.getSSID() == null) {
 				Message message = new Message();
@@ -311,8 +305,8 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 				handler.sendMessage(message);
 				return;
 			}
-			System.out.println("22222222222");
-			if (mWifiInfo.getSSID().equals("bistu")) {
+			System.out.println(mWifiInfo.getSSID()+"{}{}}{");
+			if (mWifiInfo.getSSID().equals("bistu")||mWifiInfo.getSSID().equals("\"bistu\"")) {
 				Message message = new Message();
 				message.what = 1;
 				handler.sendMessage(message);

@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/more"
+
+    <item
+        android:id="@+id/more"
         android:icon="@drawable/ic_action_overflow"
         android:orderInCategory="1"
-        android:title="更多"
-        android:showAsAction="always"/>
+        android:showAsAction="always"
+        android:title="更多">
+        <menu>
+            <item
+                android:id="@+id/about"
+                android:orderInCategory="1"
+                android:icon="@drawable/ic_action_about"
+                android:showAsAction="always|withText"
+                android:title="关于"/>
+            <item
+                android:id="@+id/update"
+                android:orderInCategory="1"
+                android:showAsAction="always"
+                android:icon="@drawable/ic_action_collapse"
+                android:title="检查更新"/>
+        </menu>
+    </item>
+
 </menu>

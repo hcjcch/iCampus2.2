@@ -86,7 +86,7 @@ public class ICampus extends Activity {
 		Builder builder = new AlertDialog.Builder(ICampus.this)
 				.setTitle("网络提示信息")
 				.setMessage("网络不可用，如果继续，请先设置网络！")
-				.setIcon(R.drawable.ic_action_about)
+				.setIcon(R.drawable.ic_action_about2)
 				.setPositiveButton("设置", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -254,7 +254,16 @@ public class ICampus extends Activity {
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
 		case R.id.more:
-			ICampus.this.showPopWindow();
+			//ICampus.this.showPopWindow();
+			break;
+		case R.id.about:
+			Intent intent = new Intent();
+			intent.setClass(ICampus.this, About.class);
+			startActivity(intent);
+			break;
+		case R.id.update:
+			isButtonCheck = true;
+			(new UpdateAsynctask()).execute();
 			break;
 		default:
 			break;
@@ -262,7 +271,7 @@ public class ICampus extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void showPopWindow() {
+	/*public void showPopWindow() {
 		if (popupWindow == null) {
 			LayoutInflater layoutInflater = LayoutInflater.from(ICampus.this);
 			final View view = layoutInflater.inflate(R.layout.popwindow, null);
@@ -303,7 +312,7 @@ public class ICampus extends Activity {
 		popupWindow.setOutsideTouchable(true);
 		popupWindow.setBackgroundDrawable(new BitmapDrawable());
 		popupWindow.showAsDropDown(findViewById(R.id.more), 0, 0);
-	}
+	}*/
 
 	class UpdateAsynctask extends AsyncTask<String, Integer, String> {
 
