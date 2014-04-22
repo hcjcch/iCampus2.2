@@ -10,7 +10,6 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.message.BasicNameValuePair;
 
-import cn.edu.bistu.tools.MyProgressDialog;
 
 import com.example.icampus2_2.R;
 

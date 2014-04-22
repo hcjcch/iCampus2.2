@@ -58,9 +58,10 @@ public class Update {
 		};
 	};
 
-	public Update(Context context,String currentVersionName,String updateVersionName) {
+	public Update(Context context,String currentVersionName,String updateVersionName,String url) {
 		this.context = context;
 		updateMsg = "当前版本："+currentVersionName+"  最新版本："+ updateVersionName;
+		apkUrl = url;
 	}
 
 	// 外部接口让主Activity调用
@@ -115,7 +116,7 @@ public class Update {
 		public void run() {
 			try {
 				URL url = new URL(apkUrl);
-
+				System.out.println(url);
 				HttpURLConnection conn = (HttpURLConnection) url
 						.openConnection();
 				conn.connect();

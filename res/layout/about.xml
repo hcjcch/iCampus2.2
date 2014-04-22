@@ -10,25 +10,16 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="3dp"
         android:layout_marginTop="5dp"
-        android:text="iBistu是北京信息科技大学官方校园移动应用，为校园师生提供移动智能终端上的信息服务。"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:text="iBistu由本校信息网络中心ifLab(网络实践创新联盟)开发及维护。"
+        android:text="iBistu是北京信息科技大学官方移动应用,由本校信息网络中心ifLab（网络实践创新联盟）开发及维护。"
         android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:text="如有任何建议请联系webmaster@bistu.edu.cn。\n功能问题请在http://weibo.com/iflab上留言或加qq(764951578)"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:text="如果任何建议请在新浪微博@ifLab,安卓版本功能问题可以直接联系QQ764951578"
         android:textSize="16sp" />
 
     <ListView

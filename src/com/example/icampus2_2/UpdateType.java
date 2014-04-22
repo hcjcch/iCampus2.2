@@ -4,14 +4,16 @@ public class UpdateType {
 	private String appName;
 	private String apkName;
 	private String verName;
+	private String apkUrl;
 	private int verCode;
 
 	public UpdateType(String appName, String apkName, String verName,
-			int verCode) {
+			String apkUrl, int verCode) {
 		super();
 		this.appName = appName;
 		this.apkName = apkName;
 		this.verName = verName;
+		this.apkUrl = apkUrl;
 		this.verCode = verCode;
 	}
 
@@ -23,7 +25,8 @@ public class UpdateType {
 	@Override
 	public String toString() {
 		return "UpdateType [appName=" + appName + ", apkName=" + apkName
-				+ ", verName=" + verName + ", verCode=" + verCode + "]";
+				+ ", verName=" + verName + ", apkUrl=" + apkUrl + ", verCode="
+				+ verCode + "]";
 	}
 
 	public String getAppName() {
@@ -48,6 +51,14 @@ public class UpdateType {
 
 	public void setVerName(String verName) {
 		this.verName = verName;
+	}
+
+	public String getApkUrl() {
+		return apkUrl;
+	}
+
+	public void setApkUrl(String apkUrl) {
+		this.apkUrl = apkUrl;
 	}
 
 	public int getVerCode() {

@@ -299,14 +299,14 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 		public void run() {
 			// TODO Auto-generated method stub
 			mWifiInfo = getWifiInfo();
-			if (mWifiInfo.getSSID() == null) {
+			if (mWifiInfo.getSSID() == null || mWifiInfo.getSSID().equals("")) {
 				Message message = new Message();
 				message.what = 0;
 				handler.sendMessage(message);
 				return;
 			}
-			System.out.println(mWifiInfo.getSSID()+"{}{}}{");
-			if (mWifiInfo.getSSID().equals("bistu")||mWifiInfo.getSSID().equals("\"bistu\"")) {
+			if (mWifiInfo.getSSID().equals("bistu")
+					|| mWifiInfo.getSSID().equals("\"bistu\"")) {
 				Message message = new Message();
 				message.what = 1;
 				handler.sendMessage(message);

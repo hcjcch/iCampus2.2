@@ -25,15 +25,13 @@ public class JsonNewsList{
 			return null;
 		}
 		List<NewsListType> list = new ArrayList<NewsListType>();
-		int a = information.indexOf("[");
-		int b = information.indexOf("]");
 		String information1 = null;
 		try {
-			information1 = information.substring(a, b+1);
-		} catch (Exception e) {
-			// TODO: handle exception
-			state = 2;
-			return null;
+			JSONObject jsonObject1 = new JSONObject(information);
+			information1 = jsonObject1.getString("d");
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		try {
 			JSONArray jsonArray = new JSONArray(information1);

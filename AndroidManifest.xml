@@ -111,6 +111,9 @@
             android:name="cn.edu.bistu.wifi.Logout"
             android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar.MinWidth" >
         </activity>
+        <activity android:name="cn.edu.bistu.oauth.Oauth"
+            android:icon="@drawable/ic_action_user"
+            android:label="登录"></activity>
 
         <receiver
             android:name="com.baidu.android.pushservice.PushServiceReceiver"
