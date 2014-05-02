@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 
 import cn.edu.bistu.about.About;
+import cn.edu.bistu.bistujob.BistuJob;
 import cn.edu.bistu.bus.BusShow;
 import cn.edu.bistu.map.BistuMap;
 import cn.edu.bistu.oauth.Oauth;
@@ -54,6 +55,7 @@ public class ICampus extends Activity {
 	private ImageView map;
 	private ImageView bus;
 	private PopupWindow popupWindow;
+	private ImageView publish;
 	private int screenWidth;
 	private ImageView wifi;
 	private final static int LOGIN_WIFI_REQUEST_CODE_STRING = 1;
@@ -129,6 +131,8 @@ public class ICampus extends Activity {
 		yellowPage = (ImageView) findViewById(R.id.imageView3);
 		bus = (ImageView) findViewById(R.id.imageView4);
 		wifi = (ImageView) findViewById(R.id.imageView7);
+		publish = (ImageView)findViewById(R.id.publish);
+		publish.setOnClickListener(new Click());
 		news.setOnClickListener(new Click());
 		school.setOnClickListener(new Click());
 		yellowPage.setOnClickListener(new Click());
@@ -175,6 +179,15 @@ public class ICampus extends Activity {
 					startActivityForResult(intent,
 							LOGOUT_WIFI_REQUEST_CODE_STRING);
 				}
+				break;
+			case R.id.publish:
+				try {
+					intent.setClass(ICampus.this, BistuJob.class);
+					startActivity(intent);
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				} 
 				break;
 			default:
 				break;
