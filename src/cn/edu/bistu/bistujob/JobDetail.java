@@ -20,16 +20,34 @@ import android.widget.TextView;
 
 public class JobDetail extends Activity {
 	private String id;
-
+	private TextView detailpublishcompany;
+	private TextView detailworklocation;
+	private TextView detaildescription;
+	private TextView detailqualification;
+	private TextView detailsalary;
+	private TextView detailtime;
+	private TextView detailcontactName;
+	private TextView detailcontactEmail;
+	private TextView detailcontactPhone;
+	private TextView detailcontactQQ;
+	private TextView detailtitle;
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.job_detail);
+
+		try {
+			init();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.show();
+
 		Intent intent = getIntent();
 		id = intent.getStringExtra("id");
 		AsyncHttpClient client = new AsyncHttpClient();
@@ -54,15 +72,51 @@ public class JobDetail extends Activity {
 						// TODO Auto-generated method stub
 						String infor = new String(arg2);
 						int a = infor.indexOf("[") + 1;
-						int b = infor.indexOf("]");
+						int b = infor.lastIndexOf("]");
 						infor = infor.substring(a, b);
 						JobDetailType detail = (new JsonJobDetail())
 								.getList(infor);
 						System.out.println(detail);
+						try {
+							setdata(detail);
+						} catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+						}
 						super.onSuccess(arg0, arg1, arg2);
 					}
 
 				});
+	}
+
+	private void init() {
+		// TODO Auto-generated method stub
+		detailtitle = (TextView) findViewById(R.id.detail_title);
+		detailpublishcompany = (TextView) findViewById(R.id.detailpublishcompany);
+		detailworklocation = (TextView) findViewById(R.id.detailworklocation);
+		detaildescription = (TextView) findViewById(R.id.detaildescription);
+		detailqualification = (TextView) findViewById(R.id.detailqualification);
+		detailsalary = (TextView) findViewById(R.id.detailsalary);
+		detailtime = (TextView) findViewById(R.id.detailtime);
+		detailcontactName = (TextView) findViewById(R.id.detailcontactName);
+		detailcontactEmail = (TextView) findViewById(R.id.detailcontactEmail);
+		detailcontactPhone = (TextView) findViewById(R.id.detailcontactPhone);
+		detailcontactQQ = (TextView) findViewById(R.id.contactQQ);
+	}
+
+	private void setdata(JobDetailType detail) {
+		// TODO Auto-generated method stub
+		detailtitle.setText(detail.getTitle());
+		detailpublishcompany.setText(detail.getCompany());
+		detailworklocation.setText(detail.getLocation());
+		detaildescription.setText(detail.getDescription());
+		detailqualification.setText(detail.getQualifications());
+		detailsalary.setText(detail.getSalary());
+		detailtime.setText(detail.getTime());
+		detailcontactName.setText(detail.getContactName());
+		detailcontactEmail.setText(detail.getContactEmail());
+		detailcontactPhone.setText(detail.getContactPhone());
+		detailcontactQQ.setText(detail.getContactQQ());
 	}
 
 	@Override

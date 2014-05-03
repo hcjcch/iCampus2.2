@@ -2,7 +2,6 @@ package cn.edu.bistu.bistujob;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.http.Header;
 
 import cn.edu.bistu.bistujobData.JobType;
@@ -68,7 +67,7 @@ public class BistuJob extends FragmentActivity implements ActionBar.TabListener 
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
@@ -169,6 +168,8 @@ public class BistuJob extends FragmentActivity implements ActionBar.TabListener 
 			intent.setClass(BistuJob.this, JobPublish.class);
 			startActivity(intent);
 			break;
+		case android.R.id.home:
+			finish();
 		default:
 			break;
 		}

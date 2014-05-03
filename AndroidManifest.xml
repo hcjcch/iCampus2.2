@@ -125,6 +125,7 @@
             android:name="cn.edu.bistu.bistujob.JobPublish"
             android:windowSoftInputMode="stateHidden" >
         </activity>
+        <activity android:name="cn.edu.bistu.bistujob.JobPublishOver"></activity>
 
         <receiver
             android:name="com.baidu.android.pushservice.PushServiceReceiver"
