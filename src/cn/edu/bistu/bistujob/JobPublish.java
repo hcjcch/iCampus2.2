@@ -3,12 +3,16 @@ package cn.edu.bistu.bistujob;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.edu.bistu.oauthsdk.OauthUtil;
+
 import com.example.icampus2_2.R;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -81,27 +85,53 @@ public class JobPublish extends Activity {
 			finish();
 			break;
 		case R.id.finish_publish:
-			
+			try {
+				Map<String, String> map = getParameter();
+				System.out.println(map);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 			break;
 		default:
 			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	private Map<String, String> getParameter() {
 		// TODO Auto-generated method stub
 		Map<String, String> parameter = new HashMap<String, String>();
 		String modString = mod.getSelectedItem().toString();
 		if (modString.equals("ºÊ÷∞")) {
 			modString = "2";
-		}else {
+		} else {
 			modString = "1";
 		}
 		parameter.put("mod", modString);
-		//String typeidString = typeid.getSelectedItem().toString();
+		String typeidString = typeid.getSelectedItem().toString();
+		parameter.put("typeid", "1");
+		String titleString = title.getText().toString();
+		parameter.put("title", titleString);
+		String companyString = company.getText().toString();
+		parameter.put("company", companyString);
+		parameter.put("description", desc);
+		parameter.put("qualifications", qual);
+		String locationString = location.getText().toString();
+		parameter.put("location", locationString);
+		String salaryString = salary.getText().toString();
+		parameter.put("salary", salaryString);
+		String conactNameString = contactName.getText().toString();
+		parameter.put("contactName", conactNameString);
+		String conactEmailString = contactEmail.getText().toString();
+		parameter.put("contactEmail", conactEmailString);
+		String conactPhoneString = contactPhone.getText().toString();
+		parameter.put("contactPhone", conactPhoneString);
+		String contactQQString = contactQQ.getText().toString();
+		parameter.put("contactQQ", contactQQString);
 		return parameter;
 	}
+
 	class MyClick implements OnClickListener {
 		@Override
 		public void onClick(View v) {
