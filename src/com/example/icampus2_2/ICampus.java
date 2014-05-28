@@ -8,6 +8,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.group.GroupFirst;
+import com.example.personal.Person;
+import com.example.personal.PersonShow;
 
 import cn.edu.bistu.about.About;
 import cn.edu.bistu.bistujob.BistuJob;
@@ -20,6 +23,7 @@ import cn.edu.bistu.oauthsdk.OauthUtil;
 import cn.edu.bistu.oauthsdk.OpenBistuProvider;
 import cn.edu.bistu.oauthsdk.OpenConsumer;
 import cn.edu.bistu.school.SchoolShow;
+import cn.edu.bistu.tools.ACache;
 import cn.edu.bistu.tools.NetworkLoad;
 import cn.edu.bistu.wifi.Login;
 import cn.edu.bistu.wifi.Logout;
@@ -37,6 +41,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -57,6 +63,7 @@ public class ICampus extends Activity {
 	private PopupWindow popupWindow;
 	private ImageView publish;
 	private int screenWidth;
+	private ImageView group;
 	private ImageView wifi;
 	private final static int LOGIN_WIFI_REQUEST_CODE_STRING = 1;
 	private final static int LOGOUT_WIFI_REQUEST_CODE_STRING = 2;
@@ -65,6 +72,7 @@ public class ICampus extends Activity {
 	private boolean isButtonCheck = false;
 	private static boolean first = true;
 	private Net net;
+
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -131,7 +139,9 @@ public class ICampus extends Activity {
 		yellowPage = (ImageView) findViewById(R.id.imageView3);
 		bus = (ImageView) findViewById(R.id.imageView4);
 		wifi = (ImageView) findViewById(R.id.imageView7);
-		publish = (ImageView)findViewById(R.id.publish);
+		publish = (ImageView) findViewById(R.id.publish);
+		group = (ImageView) findViewById(R.id.ImageView01);
+		group.setOnClickListener(new Click());
 		publish.setOnClickListener(new Click());
 		news.setOnClickListener(new Click());
 		school.setOnClickListener(new Click());
@@ -181,13 +191,21 @@ public class ICampus extends Activity {
 				}
 				break;
 			case R.id.publish:
-				try {
-					intent.setClass(ICampus.this, BistuJob.class);
+				intent.setClass(ICampus.this, BistuJob.class);
+				startActivity(intent);
+				break;
+			case R.id.ImageView01:
+				intent.setClass(ICampus.this, GroupFirst.class);
+				ACache aCache = ACache.get(ICampus.this);
+				Person person = (Person) aCache.getAsObject("user");
+				if(person == null){
+					Toast.makeText(ICampus.this, "您还没有登录！",Toast.LENGTH_LONG).show();
+					intent.setClass(ICampus.this, Oauth.class);
 					startActivity(intent);
-				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
-				} 
+					return;
+				}
+				intent.putExtra("user", person);
+				startActivity(intent);
 				break;
 			default:
 				break;
@@ -230,8 +248,9 @@ public class ICampus extends Activity {
 							Toast.LENGTH_LONG).show();
 					break;
 				default:
-					Toast.makeText(ICampus.this, "异常！(可能是访问超时，也可能是网络异常！)请重新登录！",
-							Toast.LENGTH_LONG).show();
+					Toast.makeText(ICampus.this,
+							"异常！(可能是访问超时，也可能是网络异常！)请重新登录！", Toast.LENGTH_LONG)
+							.show();
 					break;
 				}
 			}
@@ -257,38 +276,40 @@ public class ICampus extends Activity {
 		case OATUTH_LOGIN:
 			if (resultCode == RESULT_OK) {
 				String res = data.getStringExtra("result");
-				String toast = "";
+				SharedPreferences prefs = PreferenceManager
+						.getDefaultSharedPreferences(ICampus.this);
 				if (res != null && !res.equals("")) {
 					String[] mes = res.split("&"); // 将取回来的值进行解析，按照&来分开
 					for (String info : mes) { // 遍历，取出每个字段对应的值
 						if (info.contains("access_token")) {
 							info = info.substring(info.indexOf("=") + 1,
 									info.length());
-							toast += info+"\n";
-							SharedPreferences prefs=PreferenceManager.getDefaultSharedPreferences(ICampus.this);
-							OauthUtil.saveOauth(prefs, info);
+							OauthUtil.saveOauth(prefs, info);// 将access_token写入SharedPreference
 						}
 						if (info.contains("token_type")) {
 							info = info.substring(info.indexOf("=") + 1,
 									info.length());
-							toast += info +"\n";
+							
 						}
 						if (info.contains("expires_in")) {
 							info = info.substring(info.indexOf("=") + 1,
 									info.length());
-							toast += info +"\n";
+							ACache aCache = ACache.get(ICampus.this);
+							aCache.put("expires_in", info);
 						}
 					}
-					/*Toast.makeText(ICampus.this, toast, Toast.LENGTH_LONG)
-							.show();*/
-					String appId=Config.getValue("client_id");
-					String appSecret=Config.getValue("client_secret");
-					OpenConsumer openConsumer=new OpenConsumer(appId, appSecret);
-					Map<String,String> params=new HashMap<String,String>();
-					OpenBistuProvider provider = new OpenBistuProvider("https://222.249.250.89:8443/m/userinfo.htm",openConsumer,ICampus.this);
-					new HttpRequestGetTask(provider,params,this).execute();
-				}else {
-					Toast.makeText(ICampus.this, "登录失败", Toast.LENGTH_SHORT).show();
+					String appId = Config.getValue("client_id");
+					String appSecret = Config.getValue("client_secret");
+					OpenConsumer openConsumer = new OpenConsumer(appId,
+							appSecret);
+					Map<String, String> params = new HashMap<String, String>();
+					OpenBistuProvider provider = new OpenBistuProvider(
+							"https://222.249.250.89:8443/m/userinfo.htm",
+							openConsumer, ICampus.this);
+					new HttpRequestGetTask(provider, params, this).execute();
+				} else {
+					Toast.makeText(ICampus.this, "登录失败", Toast.LENGTH_SHORT)
+							.show();
 				}
 			}
 			break;
@@ -311,7 +332,7 @@ public class ICampus extends Activity {
 		Intent intent = new Intent();
 		switch (item.getItemId()) {
 		case R.id.more:
-			//ICampus.this.showPopWindow();
+			// ICampus.this.showPopWindow();
 			break;
 		case R.id.login:
 			intent.setClass(ICampus.this, Oauth.class);
@@ -325,54 +346,24 @@ public class ICampus extends Activity {
 			isButtonCheck = true;
 			(new UpdateAsynctask()).execute();
 			break;
+		case R.id.personal:
+			ACache aCache = ACache.get(ICampus.this);
+			Person person = (Person) aCache.getAsObject("user");
+			if(person == null){
+				Toast.makeText(ICampus.this, "您还没有登录！",Toast.LENGTH_LONG).show();
+				intent.setClass(ICampus.this, Oauth.class);
+				startActivity(intent);
+				break;
+			}
+			intent.putExtra("user", person);
+			intent.setClass(ICampus.this, PersonShow.class);
+			startActivity(intent);
+			break;
 		default:
 			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	/*public void showPopWindow() {
-		if (popupWindow == null) {
-			LayoutInflater layoutInflater = LayoutInflater.from(ICampus.this);
-			final View view = layoutInflater.inflate(R.layout.popwindow, null);
-			ListView listView = (ListView) view.findViewById(R.id.moreList);
-			List<String> list = new ArrayList<String>();
-			list.add("关于");
-			list.add("检查更新");
-			list.add("添加");
-			MoreAdapter adapter = new MoreAdapter(list, ICampus.this);
-			listView.setAdapter(adapter);
-			listView.setOnItemClickListener(new OnItemClickListener() {
-
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1,
-						int arg2, long arg3) {
-					// TODO Auto-generated method stub
-					switch (arg2) {
-					case 0:
-						Intent intent = new Intent();
-						intent.setClass(ICampus.this, About.class);
-						startActivity(intent);
-						popupWindow.dismiss();
-						break;
-					case 1:
-						isButtonCheck = true;
-						(new UpdateAsynctask()).execute();
-						popupWindow.dismiss();
-					default:
-						break;
-					}
-				}
-			});
-			// 这块还不太明白
-			popupWindow = new PopupWindow(view, screenWidth / 2,
-					LayoutParams.WRAP_CONTENT);
-		}
-		popupWindow.setFocusable(true);
-		popupWindow.setOutsideTouchable(true);
-		popupWindow.setBackgroundDrawable(new BitmapDrawable());
-		popupWindow.showAsDropDown(findViewById(R.id.more), 0, 0);
-	}*/
 
 	class UpdateAsynctask extends AsyncTask<String, Integer, String> {
 
@@ -408,7 +399,8 @@ public class ICampus extends Activity {
 				String currentVersionName = getVerName();
 				if (currentVersionCode < updateType.getVerCode()) {
 					(new Update(ICampus.this, currentVersionName,
-							updateType.getVerName(),updateType.getApkUrl())).update();
+							updateType.getVerName(), updateType.getApkUrl()))
+							.update();
 				} else {
 					// 判断是不是用户检查更新
 					if (isButtonCheck) {

@@ -16,7 +16,7 @@ public class OAuth {
 		params.put(Contants.MapParamName.CLIENT_ID, Config.getValue("client_id"));
 		params.put(Contants.MapParamName.RESPONSE_TYPE,response_type);
 		params.put(Contants.MapParamName.REDIRECT_URI,Config.getValue("redirect_uri"));
-		params.put(Contants.MapParamName.SCOPE,Config.getValue("scope"));
+		//params.put(Contants.MapParamName.SCOPE,Config.getValue("scope"));
 		String requestUrl=URLUtil.createUrl(Config.getValue("authorizeURL"),params);
 		System.out.println(requestUrl);
 		return requestUrl;

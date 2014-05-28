@@ -3,16 +3,13 @@ package cn.edu.bistu.bistujob;
 import java.util.HashMap;
 import java.util.Map;
 
-import cn.edu.bistu.oauthsdk.OauthUtil;
-
 import com.example.icampus2_2.R;
+
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class JobPublish extends Activity {
 	private LinearLayout description;
@@ -38,7 +36,8 @@ public class JobPublish extends Activity {
 	private String qual = "";
 	private final static int DESCRIPTION = 0;
 	private final static int QUALIFICATIONS = 1;
-
+	private TextView descrip;
+	private TextView quali;
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +55,8 @@ public class JobPublish extends Activity {
 		// TODO Auto-generated method stub
 		description = (LinearLayout) findViewById(R.id.description);
 		qualifications = (LinearLayout) findViewById(R.id.qualifications);
+		descrip = (TextView)description.findViewById(R.id.descri);
+		quali = (TextView)qualifications.findViewById(R.id.quali);
 		mod = (Spinner) findViewById(R.id.mod);
 		typeid = (Spinner) findViewById(R.id.typeid);
 		title = (EditText) findViewById(R.id.title);
@@ -85,6 +86,10 @@ public class JobPublish extends Activity {
 			finish();
 			break;
 		case R.id.finish_publish:
+			/*SharedPreferences prefs = PreferenceManager
+					.getDefaultSharedPreferences(JobPublish.this);
+			String accessToken = OauthUtil.getAccessToken(prefs);
+			System.out.println(accessToken);*/
 			try {
 				Map<String, String> map = getParameter();
 				System.out.println(map);
@@ -160,11 +165,13 @@ public class JobPublish extends Activity {
 		case DESCRIPTION:
 			if (resultCode == RESULT_OK) {
 				desc = data.getStringExtra("jobpublish");
+				descrip.setText(desc);
 			}
 			break;
 		case QUALIFICATIONS:
 			if (resultCode == RESULT_OK) {
 				qual = data.getStringExtra("jobpublish");
+				quali.setText(qual);
 			}
 			break;
 		default:

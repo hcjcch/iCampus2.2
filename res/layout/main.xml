@@ -126,25 +126,42 @@
         android:src="@drawable/school" />
 
     <ImageView
+        android:id="@+id/ImageView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="14dp"
+        android:src="@drawable/placeholder" />
+
+    <ImageView
         android:id="@+id/publish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView5"
         android:layout_alignRight="@+id/textView5"
-        android:layout_below="@+id/textView5"
-        android:layout_marginTop="22dp"
+        android:layout_alignTop="@+id/ImageView01"
         android:src="@drawable/placeholder" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
         android:layout_alignLeft="@+id/publish"
         android:layout_alignRight="@+id/publish"
+        android:gravity="center_horizontal"
         android:layout_below="@+id/publish"
         android:text="兼职" />
 
-"
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ImageView01"
+        android:layout_alignRight="@+id/ImageView01"
+        android:layout_below="@+id/ImageView01"
+        android:gravity="center_horizontal"
+        android:text="群组" />
 
 </RelativeLayout>

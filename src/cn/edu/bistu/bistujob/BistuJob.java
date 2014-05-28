@@ -2,11 +2,13 @@ package cn.edu.bistu.bistujob;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.http.Header;
 
 import cn.edu.bistu.bistujobData.JobType;
 import cn.edu.bistu.bistujobData.JsonJobType;
 
+import com.example.icampus2_2.ICampus;
 import com.example.icampus2_2.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -170,6 +172,15 @@ public class BistuJob extends FragmentActivity implements ActionBar.TabListener 
 			break;
 		case android.R.id.home:
 			finish();
+			break;
+		case R.id.mypublish:
+			intent.setClass(BistuJob.this, MyPublish.class);
+			startActivity(intent);
+			break;
+		case R.id.mypersonal:
+			intent.setClass(BistuJob.this, MySave.class);
+			startActivity(intent);
+			break;
 		default:
 			break;
 		}

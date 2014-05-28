@@ -16,7 +16,6 @@ public class StatusFile {
 		// TODO Auto-generated constructor stub
 		path = context.getCacheDir().getPath() + File.separator
 				+ "iCampusWifiStatus";
-		;
 	}
 
 	public boolean writeStatus(int status) {

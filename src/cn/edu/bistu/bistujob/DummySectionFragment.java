@@ -63,6 +63,7 @@ public class DummySectionFragment extends Fragment {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.putExtra("id", list.get(arg2).getId());
+				intent.putExtra("status", "0");
 				intent.setClass(getActivity(), JobDetail.class);
 				startActivity(intent);
 			}

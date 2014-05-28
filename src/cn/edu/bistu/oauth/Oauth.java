@@ -36,10 +36,12 @@ public class Oauth extends Activity {
 		webView.setWebViewClient(new WebViewClient() {
 			@Override
 			public void onPageFinished(WebView view, String url) {
+				System.out.println(url+"**");
 				try {
 					if (url.contains("#")) {
 						result = url.substring(url.indexOf("#") + 1,
 								url.length());
+						
 						intent.putExtra("result", result);
 						Oauth.this.setResult(RESULT_OK, intent);
 						Oauth.this.finish();
@@ -74,7 +76,7 @@ public class Oauth extends Activity {
 
 	// 利用webView的loadUrl方法
 	public void openBrowser(String url) {
-		System.out.println(url);
+		//System.out.println(url);
 		webView.loadUrl(url);
 	}
 

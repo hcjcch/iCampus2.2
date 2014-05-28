@@ -51,24 +51,15 @@ public class FragmentAdapter extends BaseAdapter{
 			arg1 = LayoutInflater.from(context).inflate(R.layout.job_item, null);
 			viewHolder = new ViewHolder();
 			viewHolder.title = (TextView)arg1.findViewById(R.id.title);
-			viewHolder.location = (TextView)arg1.findViewById(R.id.location);
-			viewHolder.salary = (TextView)arg1.findViewById(R.id.salary);
-			viewHolder.time = (TextView)arg1.findViewById(R.id.time);
 			arg1.setTag(viewHolder);
 		}else {
 			viewHolder = (ViewHolder)arg1.getTag();
 		}
 		viewHolder.title.setText(list.get(arg0).getTitle());
-		viewHolder.location.setText(list.get(arg0).getLocation());
-		viewHolder.salary.setText(list.get(arg0).getSalary());
-		viewHolder.time.setText(list.get(arg0).getTime());
 		return arg1;
 	}
 	
 	class ViewHolder{
 		TextView title;
-		TextView location;
-		TextView salary;
-		TextView time;
 	}
 }

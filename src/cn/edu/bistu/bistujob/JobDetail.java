@@ -1,9 +1,12 @@
 package cn.edu.bistu.bistujob;
 
+import java.io.IOException;
+
 import org.apache.http.Header;
 
 import cn.edu.bistu.bistujobData.JobDetailType;
 import cn.edu.bistu.bistujobData.JsonJobDetail;
+import cn.edu.bistu.tools.OperateFileForMySaveJob;
 
 import com.example.icampus2_2.R;
 import com.loopj.android.http.AsyncHttpClient;
@@ -31,13 +34,15 @@ public class JobDetail extends Activity {
 	private TextView detailcontactPhone;
 	private TextView detailcontactQQ;
 	private TextView detailtitle;
+	private String status = "0";
+	private JobDetailType detail;
+
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.job_detail);
-
 		try {
 			init();
 		} catch (Exception e) {
@@ -47,8 +52,13 @@ public class JobDetail extends Activity {
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.show();
-
 		Intent intent = getIntent();
+		status = intent.getStringExtra("status");
+		if (status.equals("2")) {
+			detail = (JobDetailType) intent.getSerializableExtra("detail");
+			setdata(detail);
+			return;
+		}
 		id = intent.getStringExtra("id");
 		AsyncHttpClient client = new AsyncHttpClient();
 		client.get("http://m.bistu.edu.cn/newapi/jobdetail.php?id=" + id,
@@ -74,9 +84,8 @@ public class JobDetail extends Activity {
 						int a = infor.indexOf("[") + 1;
 						int b = infor.lastIndexOf("]");
 						infor = infor.substring(a, b);
-						JobDetailType detail = (new JsonJobDetail())
+						detail = (new JsonJobDetail())
 								.getList(infor);
-						System.out.println(detail);
 						try {
 							setdata(detail);
 						} catch (Exception e) {
@@ -101,7 +110,7 @@ public class JobDetail extends Activity {
 		detailcontactName = (TextView) findViewById(R.id.detailcontactName);
 		detailcontactEmail = (TextView) findViewById(R.id.detailcontactEmail);
 		detailcontactPhone = (TextView) findViewById(R.id.detailcontactPhone);
-		detailcontactQQ = (TextView) findViewById(R.id.contactQQ);
+		detailcontactQQ = (TextView) findViewById(R.id.detailcontactQQ);
 	}
 
 	private void setdata(JobDetailType detail) {
@@ -122,7 +131,13 @@ public class JobDetail extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
-		getMenuInflater().inflate(R.menu.job_detail, menu);
+		if (status.equals("0")) {
+			getMenuInflater().inflate(R.menu.job_detail, menu);
+		} else if(status.equals("1")) {
+			getMenuInflater().inflate(R.menu.none, menu);
+		}else {
+			getMenuInflater().inflate(R.menu.none, menu);
+		}
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -133,7 +148,20 @@ public class JobDetail extends Activity {
 		case android.R.id.home:
 			finish();
 			break;
-
+		case R.id.save:
+			OperateFileForMySaveJob saveJob = new OperateFileForMySaveJob(JobDetail.this);
+			try {
+				saveJob.saveJob(id, detail);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("job ’≤ÿ¥ÌŒÛ");
+				e.printStackTrace();
+			}
+			break;
+		case R.id.tel:
+			break;
+		case R.id.talk:
+			break;
 		default:
 			break;
 		}

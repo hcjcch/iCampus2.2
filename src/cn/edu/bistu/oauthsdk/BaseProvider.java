@@ -61,7 +61,7 @@ public abstract class BaseProvider {
 	/**
 	 * 发�?请求的应用信息对�?
 	 */
-	protected OpenConsumer _consumer;
+	protected OpenConsumer _consumer;//appid ,appsecret
 
 	protected Context _context;
 
@@ -125,7 +125,7 @@ public abstract class BaseProvider {
 		if (mustParams == null) {
 			return null;
 		}
-		String headUrl = URLUtil.createUrl(url, mustParams);
+		String headUrl = URLUtil.createUrl(url, mustParams);//生成url
 		HttpPost httpPost = new HttpPost(headUrl);
 		setHeader(headers, httpPost);
 		switch (paramType) {
@@ -305,7 +305,7 @@ public abstract class BaseProvider {
 				return null;
 			} else {
 				mustParams.put(Contants.RequestParamName.ACCESS_TOKEN,
-						accessToken);
+						accessToken);//添加access——token
 				mustParams.put(
 						Contants.RequestParamName.DIGEST,
 						ParamsUtil.getDigest(params, mustParams,

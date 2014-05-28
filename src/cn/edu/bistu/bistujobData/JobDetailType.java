@@ -1,7 +1,13 @@
 package cn.edu.bistu.bistujobData;
 
-public class JobDetailType {
+import java.io.Serializable;
 
+public class JobDetailType implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String title;
 	private String typeid;

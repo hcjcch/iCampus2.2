@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BDBFBF"
     android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/publish_job"
+        android:background="@drawable/radiuscornersquare"
         android:layout_margin="10dp"
         android:orientation="vertical" >
 
@@ -15,18 +16,20 @@
             android:id="@+id/jobpublish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/publish_job"
+            android:background="@android:drawable/edit_text"
 			android:padding="5dp"
+			android:layout_margin="1dp"
             android:gravity="start"
             android:hint="请输入内容"
             android:minLines="10" />
 
-        <TextView
+
+        <ImageView
+            android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:textSize="20sp"
-            android:hint="清除所有" />
+            android:src="@android:drawable/ic_menu_delete" />
     </LinearLayout>
 
 </LinearLayout>

@@ -26,6 +26,12 @@
                 android:showAsAction="always"
                 android:icon="@drawable/ic_action_collapse"
                 android:title="检查更新"/>
+            <item
+                android:id="@+id/personal"
+                android:orderInCategory="1"
+                android:showAsAction="always"
+                android:icon="@drawable/ic_action_user"
+                android:title="个人中心"/>
         </menu>
     </item>
 

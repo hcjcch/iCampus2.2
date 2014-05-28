@@ -5,8 +5,8 @@
     android:versionName="1.01" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="18" />
+        android:minSdkVersion="16"
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -34,7 +34,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="iBistu"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/Theme.Ibistu" >
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="26e00faade2f9802c592ff80babb750f" />
@@ -42,8 +42,7 @@
         <activity
             android:name="com.example.icampus2_2.Splash"
             android:icon="@drawable/bistu_log"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -105,18 +104,23 @@
         <activity
             android:name="cn.edu.bistu.wifi.Login"
             android:label="wifi登录"
-            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar.MinWidth" >
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
             android:name="cn.edu.bistu.wifi.Logout"
-            android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar.MinWidth" >
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
             android:name="cn.edu.bistu.oauth.Oauth"
             android:icon="@drawable/ic_action_user"
             android:label="登录" >
         </activity>
-        <activity android:name="cn.edu.bistu.bistujob.BistuJob"></activity>
+        <activity android:name="cn.edu.bistu.bistujob.MySave" >
+        </activity>
+        <activity android:name="cn.edu.bistu.bistujob.MyPublish" >
+        </activity>
+        <activity android:name="cn.edu.bistu.bistujob.BistuJob" >
+        </activity>
         <activity android:name="cn.edu.bistu.bistujob.JobSort" >
         </activity>
         <activity android:name="cn.edu.bistu.bistujob.JobDetail" >
@@ -125,7 +129,19 @@
             android:name="cn.edu.bistu.bistujob.JobPublish"
             android:windowSoftInputMode="stateHidden" >
         </activity>
-        <activity android:name="cn.edu.bistu.bistujob.JobPublishOver"></activity>
+        <activity android:name="cn.edu.bistu.bistujob.JobPublishOver" >
+        </activity>
+        <!-- Group -->
+        <activity android:name="com.example.group.GroupFirst" >
+        </activity>
+        <activity android:name="com.example.group.GroupMen" >
+        </activity>
+        <activity android:name="com.example.group.StudentDetil" >
+        </activity>
+        <activity android:name="com.example.personal.PersonShow" >
+        </activity>
+        <activity android:name="com.example.personal.MessagePost" >
+        </activity>
 
         <receiver
             android:name="com.baidu.android.pushservice.PushServiceReceiver"

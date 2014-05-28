@@ -1,5 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item
+    <item
         android:id="@+id/search"
         android:actionViewClass="android.widget.SearchView"
         android:showAsAction="always"
@@ -9,23 +9,6 @@
         android:icon="@drawable/ic_action_select_all"
         android:showAsAction="always"
         android:title="分类">
-       <!--  <menu>
-            <item
-                android:id="@+id/IT"
-                android:orderInCategory="100"
-                android:showAsAction="ifRoom"
-                android:title="IT"/>
-            <item
-                android:id="@+id/CustomerServices"
-                android:orderInCategory="100"
-                android:showAsAction="ifRoom"
-                android:title="客服"/>
-            <item
-                android:id="@+id/service"
-                android:orderInCategory="100"
-                android:showAsAction="ifRoom"
-                android:title="服务"/>
-        </menu> -->
     </item>
     <item
         android:id="@+id/more"
@@ -39,11 +22,15 @@
                 android:showAsAction="ifRoom"
                 android:title="发布"/>
             <item
-                android:id="@+id/myCenter"
+                android:id="@+id/mypersonal"
                 android:orderInCategory="100"
                 android:showAsAction="ifRoom"
-                android:title="个人中心"/>
-            
+                android:title="我的收藏"/>
+            <item
+                android:id="@+id/mypublish"
+                android:orderInCategory="100"
+                android:showAsAction="ifRoom"
+                android:title="我的发布"/>
         </menu>
     </item>
 
