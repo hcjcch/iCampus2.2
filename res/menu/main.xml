@@ -1,0 +1,24 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_settings"/>
+    <item  
+        android:id="@+id/qiehuan"
+        android:orderInCategory="1"
+        android:showAsAction="always"
+        android:title="卫星\n视图"/>
+    <item  
+        android:id="@+id/traffic"
+        android:orderInCategory="2"
+        android:showAsAction="always"
+        android:title="实时\n交通"/>
+<!--     <item  
+        android:id="@+id/myLocation"
+        android:orderInCategory="2"
+        android:showAsAction="always"
+        android:title="我的\n位置"/> -->
+
+</menu>

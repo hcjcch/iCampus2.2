@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="mod">
+        <item>兼职</item>
+        <item>全职</item>
+    </string-array>
+    <string-array name="type">
+        <item>家教</item>
+        <item>计算机</item>
+        <item>通信</item>
+        <item>经管</item>
+    </string-array>
+
+</resources>
