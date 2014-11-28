@@ -41,6 +41,8 @@ public class GroupMen extends Activity {
     	super.onCreate(savedInstanceState);
     	Intent intent = getIntent();
     	String title=intent.getStringExtra("title");
+    	
+    	String classtype=intent.getStringExtra("classtype");
     	setContentView(R.layout.groupfirst);
     	ActionBar actionBar = getActionBar();
     	actionBar.setIcon(R.drawable.groupicon);
@@ -50,7 +52,7 @@ public class GroupMen extends Activity {
     	progressDialog = new MyProgressDialog(this, "正在加载中", "请稍后...", false);
     	listView= (ListView)findViewById(R.id.groupfirsts);
     	AsyncHttpClient client = new AsyncHttpClient();
-    	client.get("http://jwcapi.iflab.org/groupuser.php?group="+title, new AsyncHttpResponseHandler(){
+    	client.get("http://jwcapi.iflab.org/groupuser.php?group="+title+"&grouptype="+classtype, new AsyncHttpResponseHandler(){
     		@Override
     		public void onFailure(int arg0, Header[] arg1, byte[] arg2,
     				Throwable arg3) {

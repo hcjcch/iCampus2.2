@@ -96,12 +96,12 @@ public class GroupFirst extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
 				intent.putExtra("title", list.get(arg2).getGroup());
+				intent.putExtra("classtype", list.get(arg2).getType());
 				intent.setClass(GroupFirst.this, GroupMen.class);
 				startActivity(intent);
 
 			}
 		});
-
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {

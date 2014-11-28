@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="100dp"
+                    android:text="1"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="100dp"
+                    android:text="2" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="100dp"
+                    android:text="3" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="100dp"
+                    android:text="4" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="100dp"
+                    android:text="5" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="100dp"
+                    android:text="6" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="100dp"
+                    android:text="7" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="100dp"
+                    android:text="8" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="100dp"
+                    android:text="9" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="100dp"
+                    android:text="10" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="100dp"
+                    android:text="11" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="100dp"
+                    android:text="12" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="100dp"
+                    android:text="13" />
+
+
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <com.hcjcch.educationaladministration.educational.MyuScrollview
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:id="@+id/day_bar"
+                            android:layout_gravity="start"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:text="9月"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:text="周一" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="周二" />
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:text="周三" />
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:text="周四" />
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:text="周五" />
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:text="周六" />
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:text="周日" />
+                        </LinearLayout>
+                    </com.hcjcch.educationaladministration.educational.MyuScrollview>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

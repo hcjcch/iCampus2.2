@@ -58,11 +58,11 @@ public class HttpRequestGetTask extends AsyncTask<Void, Void, Void> {
 	protected void onPostExecute(Void result) {
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
-		Toast.makeText(context, res, Toast.LENGTH_LONG).show();
+		//Toast.makeText(context, res, Toast.LENGTH_LONG).show();
 		try {
-			JSONArray jsonArray = new JSONArray(res);
-			for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject jsonObject = jsonArray.getJSONObject(i);
+			//JSONObject jsonArray = new JSONObject(res);
+			//for (int i = 0; i < jsonArray.length(); i++) {
+				JSONObject jsonObject =  new JSONObject(res);
 				String userid = jsonObject.getString("userid");
 				String username = jsonObject.getString("username");
 				String idtype = jsonObject.getString("idtype");
@@ -70,7 +70,7 @@ public class HttpRequestGetTask extends AsyncTask<Void, Void, Void> {
 				Person person = new Person(userid, username, idtype);
 				aCache.put("user", person,
 						Integer.parseInt(aCache.getAsString("expires_in")));
-			}
+			//}
 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block

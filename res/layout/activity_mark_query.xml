@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="16dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditText
+        android:id="@+id/EditView1"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:background="@drawable/input1"
+        android:hint="@string/years"
+        android:onClick="input_year"/>
+
+    <EditText
+        android:id="@+id/EditView2"
+        android:textSize="20sp"
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:layout_height="50dp"
+        android:hint="@string/Semester"
+        android:background="@drawable/input1"
+        android:onClick="input_semester"/>
+
+    <EditText
+        android:id="@+id/EditView3"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:hint="@string/type"
+        android:background="@drawable/input1"
+        android:onClick="input_type"/>
+
+    <Button
+        android:id="@+id/queryButton"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/query"
+        android:textColor="#fff"
+        android:background="@drawable/btnselector"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="query"/>
+
+</LinearLayout>

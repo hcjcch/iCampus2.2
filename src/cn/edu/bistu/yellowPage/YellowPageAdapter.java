@@ -45,7 +45,7 @@ public class YellowPageAdapter extends BaseAdapter{
 		ViewHodler viewHodler;
 		if (arg1 == null) {
 			viewHodler = new ViewHodler();
-			arg1 = LayoutInflater.from(context).inflate(R.layout.school_item, null);
+			arg1 = LayoutInflater.from(context).inflate(R.layout.collegel_item, null);
 			viewHodler.textView = (TextView)arg1.findViewById(R.id.schoolItem);
 			arg1.setTag(viewHodler);
 		}else {

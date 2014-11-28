@@ -11,6 +11,8 @@ import org.json.JSONObject;
 import com.example.group.GroupFirst;
 import com.example.personal.Person;
 import com.example.personal.PersonShow;
+import com.hcjcch.educationaladministration.activity.MarkQueryActivity;
+import com.hcjcch.educationaladministration.activity.SchoolPlaceActivity;
 
 import cn.edu.bistu.about.About;
 import cn.edu.bistu.bistujob.BistuJob;
@@ -143,6 +145,9 @@ public class ICampus extends Activity {
 		moduls.add(new Item(R.drawable.wi_fi, "wifi", Login.class));
 		moduls.add(new Item(R.drawable.jobseekericon, "工作", BistuJob.class));
 		moduls.add(new Item(R.drawable.groupicon, "群组", GroupFirst.class));
+		moduls.add(new Item(R.drawable.fronticonsfreerooms, "教室", SchoolPlaceActivity.class));
+		moduls.add(new Item(R.drawable.fronticonsgrade_search, "成绩", MarkQueryActivity.class));
+		
 		GridAdapter adapter = new GridAdapter(moduls, ICampus.this);
 		gridView.setAdapter(adapter);
 		gridView.setOnItemClickListener(new OnItemClickListener() {
@@ -165,6 +170,20 @@ public class ICampus extends Activity {
 					}
 				}else if (moduls.get(arg2).getImageId() == R.drawable.groupicon) {
 					intent.setClass(ICampus.this, GroupFirst.class);
+					ACache aCache = ACache.get(ICampus.this);
+					Person person = (Person) aCache.getAsObject("user");
+					if (person == null) {
+						Toast.makeText(ICampus.this, "您还没有登录！", Toast.LENGTH_LONG)
+								.show();
+						intent.setClass(ICampus.this, Oauth.class);
+						startActivityForResult(intent, OATUTH_LOGIN);
+						return;
+					}
+					intent.putExtra("user", person);
+					startActivity(intent);
+				}else if (moduls.get(arg2).getImageId() == R.drawable.fronticonsgrade_search) {
+					intent.setClass(ICampus.this, MarkQueryActivity.class);
+					//intent.setClass(ICampus.this, GroupFirst.class);
 					ACache aCache = ACache.get(ICampus.this);
 					Person person = (Person) aCache.getAsObject("user");
 					if (person == null) {

@@ -142,6 +142,17 @@
         </activity>
         <activity android:name="com.example.personal.MessagePost" >
         </activity>
+        <activity android:name="com.hcjcch.educationaladministration.activity.OauthActivity">
+
+        </activity>
+
+        <!-- 空闲教室 -->
+        <activity android:name="com.hcjcch.educationaladministration.activity.SchoolPlaceActivity"></activity>
+        <activity android:name="com.hcjcch.educationaladministration.activity.ClassroomActivity"></activity>
+        <activity android:name="com.hcjcch.educationaladministration.activity.BuildingActivity"></activity>
+        <activity
+            android:name="com.hcjcch.educationaladministration.activity.MarkQueryActivity">
+        </activity>
 
         <receiver
             android:name="com.baidu.android.pushservice.PushServiceReceiver"

@@ -6,5 +6,13 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_section1">兼职</string>
     <string name="title_section2">全职</string>
+    
+    <string name="menu_room_query">空闲教室查询</string>
+
+    <string name="date_select_menu">选择日期</string>
+    <string name="years">学年：</string>
+    <string name="Semester">学期：</string>
+    <string name="query">查询成绩</string>
+    <string name="type">类型：</string>
 
 </resources>
