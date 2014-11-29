@@ -74,7 +74,7 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 	}
 
 	public void creatWifiLock() {// 创建一个WifiLock
-		mWifiLock = mWifiManager.createWifiLock("bistu");
+		mWifiLock = mWifiManager.createWifiLock("BISTU");
 	}
 
 	public List<WifiConfiguration> getConfiguration() { // 得到配置好的网络
@@ -198,7 +198,7 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 
 			mWifiInfo = getWifiInfo();
 			if (mWifiInfo != null && mWifiInfo.getSSID() != null
-					&& mWifiInfo.getSSID().equals("bistu")) {
+					&& mWifiInfo.getSSID().equals("BISTU")) {
 				Message msg = new Message();
 				msg.what = -1;
 				handler.sendMessage(msg);
@@ -237,7 +237,7 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 					e.printStackTrace();
 				}
 			}
-			/*if (!mWifiList.toString().contains("bistu")) {
+			/*if (!mWifiList.toString().contains("BISTU")) {
 				Message msg = new Message();
 				msg.what = 7;
 				handler.sendMessage(msg);
@@ -247,7 +247,7 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 			msg1.what = 2;
 			handler.sendMessage(msg1);
 
-			WifiConfiguration formerConfiguration = isExsites("bistu");
+			WifiConfiguration formerConfiguration = isExsites("BISTU");
 			if (formerConfiguration == null) {
 				Message msg = new Message();
 				msg.what = 3;
@@ -263,8 +263,8 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 			if (bRet == true) {
 				try {
 					while (mWifiInfo.getSSID() == null
-							|| (!mWifiInfo.getSSID().equals("bistu") && !mWifiInfo
-									.getSSID().equals("\"bistu\""))) {
+							|| (!mWifiInfo.getSSID().equals("BISTU") && !mWifiInfo
+									.getSSID().equals("\"BISTU\""))) {
 						try {
 							mWifiInfo = getWifiInfo();
 							Thread.sleep(100);
@@ -304,8 +304,8 @@ public class WifiAdmin {// 代码来自网络，原址找不到了……
 				handler.sendMessage(message);
 				return;
 			}
-			if (mWifiInfo.getSSID().equals("bistu")
-					|| mWifiInfo.getSSID().equals("\"bistu\"")) {
+			if (mWifiInfo.getSSID().equals("BISTU")
+					|| mWifiInfo.getSSID().equals("\"BISTU\"")) {
 				Message message = new Message();
 				message.what = 1;
 				handler.sendMessage(message);

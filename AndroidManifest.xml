@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.icampus2_2"
-    android:versionCode="4"
-    android:versionName="1.04" >
+    android:versionCode="5"
+    android:versionName="1.05" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -142,17 +142,30 @@
         </activity>
         <activity android:name="com.example.personal.MessagePost" >
         </activity>
-        <activity android:name="com.hcjcch.educationaladministration.activity.OauthActivity">
-
+        <activity android:name="com.hcjcch.educationaladministration.activity.OauthActivity" >
         </activity>
-
-        <!-- 空闲教室 -->
-        <activity android:name="com.hcjcch.educationaladministration.activity.SchoolPlaceActivity"></activity>
-        <activity android:name="com.hcjcch.educationaladministration.activity.ClassroomActivity"></activity>
-        <activity android:name="com.hcjcch.educationaladministration.activity.BuildingActivity"></activity>
         <activity
-            android:name="com.hcjcch.educationaladministration.activity.MarkQueryActivity">
+            android:name="cn.edu.bistu.secondhand.Filter"
+            android:label="@string/title_activity_filter" >
         </activity>
+        <activity android:name="cn.edu.bistu.secondhand.MyPublish" >
+        </activity>
+        <activity android:name="cn.edu.bistu.secondhand.SecondHand" >
+        </activity>
+        <activity android:name="cn.edu.bistu.secondhand.Sell_Goods" >
+        </activity>
+        <activity android:name="cn.edu.bistu.secondhand.Goods_Detail"></activity>
+		<activity android:name="com.hcjcch.educationaladministration.activity.MarkDetailActivity"></activity>
+        <!-- 空闲教室 -->
+        <activity android:name="com.hcjcch.educationaladministration.activity.SchoolPlaceActivity" >
+        </activity>
+        <activity android:name="com.hcjcch.educationaladministration.activity.ClassroomActivity" >
+        </activity>
+        <activity android:name="com.hcjcch.educationaladministration.activity.BuildingActivity" >
+        </activity>
+        <activity android:name="com.hcjcch.educationaladministration.activity.MarkQueryActivity" >
+        </activity>
+        
 
         <receiver
             android:name="com.baidu.android.pushservice.PushServiceReceiver"

@@ -1,5 +1,6 @@
 package com.hcjcch.educationaladministration.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import com.hcjcch.educationaladministration.utils.EduHttpClient;
 import com.hcjcch.educationaladministration.utils.MarkUtils;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+
+
 
 
 
@@ -47,6 +50,9 @@ public class MarkDetailActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mark_detail);
+        ActionBar actionBar = getActionBar();
+        actionBar.setIcon(R.drawable.fronticonsgrade_search);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         listview = (ListView)findViewById(R.id.detail);
         //获取传递的信息
         intent = getIntent();
@@ -118,12 +124,6 @@ public class MarkDetailActivity extends Activity {
         return list;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
     public void onEventMainThread(NetworkChangeEvent event){
         if (event.isNetworkConnected()){
@@ -133,21 +133,24 @@ public class MarkDetailActivity extends Activity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
+    
+    @Override
+   	public boolean onOptionsItemSelected(MenuItem item) {
+   		// TODO Auto-generated method stub
+   		switch (item.getItemId()) {
+   		case android.R.id.home:
+   			finish();
+   			break;
+
+   		default:
+   			break;
+   		}
+   		return super.onOptionsItemSelected(item);
+   	}
 }

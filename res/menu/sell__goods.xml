@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.second_hand.Sell_Goods" >
+    <item
+        android:id="@+id/submit"
+        android:orderInCategory="100"
+        android:title="发布"
+        android:showAsAction="always"/>
+</menu>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <cn.edu.bistu.tools.secondhandtools.HcDownRefreshList
+        android:id="@+id/good_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+    </cn.edu.bistu.tools.secondhandtools.HcDownRefreshList>
+
+</LinearLayout>

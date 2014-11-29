@@ -100,7 +100,7 @@ public class Login extends Activity {
 				case -1:
 					textView.setText("正在登录bistu wifi！");
 					status = 1;
-					(new MyAs()).execute("https://6.6.6.6/login.html");
+					(new MyAs()).execute("https://1.1.1.1/login.html");
 					break;
 				case 0:
 					textView.setText("正在打开wifi！");

@@ -35,13 +35,13 @@ public class MarkUtils {
         this.context = context;
         this.years = this.pull_years("year.php");
     }
-    //鑾峰彇瀛﹀勾鍒楄〃
+    //获取学年列表
     private String[] pull_years(String url){
         final String[] str = new String[4];
         RequestParams params = new RequestParams();
         params.add("xh",xuehao);
         //api_path;
-        //寮傛鑾峰彇json骞惰В鏋恓son
+        //异步获取json并解析json
         EduHttpClient.get(url,params,new AsyncHttpResponseHandler() {
             @Override
             public void onStart(){
@@ -56,7 +56,7 @@ public class MarkUtils {
                     //!!!decode JSON must try block!!!!
                     JSONArray array = new JSONArray(json);
                     for(int i=0;i<array.length();i++){
-                        //瑙ｆ瀽json
+                        //解析json
                         JSONObject object = array.getJSONObject(i);
                         str[i]=object.getString("title");
                     }

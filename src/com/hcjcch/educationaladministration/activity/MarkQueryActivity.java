@@ -1,7 +1,9 @@
 package com.hcjcch.educationaladministration.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification.Action;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.nfc.Tag;
@@ -14,7 +16,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.view.View;
 
+import com.example.icampus2_2.ICampus;
 import com.example.icampus2_2.R;
+import com.example.personal.Person;
 import com.hcjcch.educationaladministration.config.StaticVariable;
 import com.hcjcch.educationaladministration.event.NetworkChangeEvent;
 import com.hcjcch.educationaladministration.utils.EduHttpClient;
@@ -44,6 +48,9 @@ public class MarkQueryActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mark_query);
+        ActionBar actionBar = getActionBar();
+        actionBar.setIcon(R.drawable.fronticonsgrade_search);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         year = (EditText)findViewById(R.id.EditView1);
         year.setFocusable(false);
         // not show the Keyboard
@@ -54,7 +61,7 @@ public class MarkQueryActivity extends Activity {
         //querybutton = (Button)findViewById(R.id.queryButton);
         intent = getIntent();
         //学号接口！！！！
-        id = intent.getStringExtra("xuehao");
+        id = ((Person)intent.getSerializableExtra("user")).getUserid();
         markUtils = new MarkUtils(id, this);
         EventBus.getDefault().register(this);
     }
@@ -139,13 +146,6 @@ public class MarkQueryActivity extends Activity {
         return res;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
     public void onEventMainThread(NetworkChangeEvent event){
         if (event.isNetworkConnected()){
             Toast.makeText(this, "网络连接", Toast.LENGTH_SHORT).show();
@@ -155,20 +155,22 @@ public class MarkQueryActivity extends Activity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
+    
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			finish();
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }

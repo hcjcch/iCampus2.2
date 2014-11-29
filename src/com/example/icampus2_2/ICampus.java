@@ -25,6 +25,7 @@ import cn.edu.bistu.oauthsdk.OauthUtil;
 import cn.edu.bistu.oauthsdk.OpenBistuProvider;
 import cn.edu.bistu.oauthsdk.OpenConsumer;
 import cn.edu.bistu.school.SchoolShow;
+import cn.edu.bistu.secondhand.SecondHand;
 import cn.edu.bistu.tools.ACache;
 import cn.edu.bistu.tools.GetInformation;
 import cn.edu.bistu.tools.MyPopWindow;
@@ -33,6 +34,7 @@ import cn.edu.bistu.wifi.Login;
 import cn.edu.bistu.wifi.Logout;
 import cn.edu.bistu.wifi.StatusFile;
 import cn.edu.bistu.yellowPage.YellowPageShow;
+import cn.edu.bistu.yellowPageData.YelloPage;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -145,6 +147,7 @@ public class ICampus extends Activity {
 		moduls.add(new Item(R.drawable.wi_fi, "wifi", Login.class));
 		moduls.add(new Item(R.drawable.jobseekericon, "工作", BistuJob.class));
 		moduls.add(new Item(R.drawable.groupicon, "群组", GroupFirst.class));
+		moduls.add(new Item(R.drawable.shopping_bag, "二手", SecondHand.class));
 		moduls.add(new Item(R.drawable.fronticonsfreerooms, "教室", SchoolPlaceActivity.class));
 		moduls.add(new Item(R.drawable.fronticonsgrade_search, "成绩", MarkQueryActivity.class));
 		
@@ -157,7 +160,21 @@ public class ICampus extends Activity {
 					long arg3) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-				if (moduls.get(arg2).getImageId() == R.drawable.wi_fi) {
+				if (moduls.get(arg2).getImageId() == R.drawable.yellowpage) {
+					intent.setClass(ICampus.this, YellowPageShow.class);
+					ACache aCache = ACache.get(ICampus.this);
+					Person person = (Person) aCache.getAsObject("user");
+					if (person == null) {
+						Toast.makeText(ICampus.this, "您还没有登录！", Toast.LENGTH_LONG)
+								.show();
+						intent.setClass(ICampus.this, Oauth.class);
+						startActivityForResult(intent, OATUTH_LOGIN);
+						return;
+					}
+					intent.putExtra("user", person);
+					startActivity(intent);
+				}
+				else if (moduls.get(arg2).getImageId() == R.drawable.wi_fi) {
 					int status = statusFile.readStatus();
 					if (status == 0) {
 						intent.setClass(ICampus.this, Login.class);

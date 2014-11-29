@@ -1,0 +1,159 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#dcdcdc"
+        android:orientation="vertical"
+        tools:context="com.example.second_hand.Sell_Goods"
+        tools:ignore="MergeRootFrame" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="left"
+            android:text="图片上传：" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="125dp"
+            android:background="@drawable/buju" >
+
+            <HorizontalScrollView
+                android:id="@+id/selectimg_horizontalScrollView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal" >
+
+                    <cn.edu.bistu.tools.secondhandtools.NoScrollGridView
+                        android:id="@+id/noScrollgridview"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:fastScrollEnabled="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:horizontalSpacing="0dp"
+                        android:scrollbars="none"
+                        android:scrollingCache="false"
+                        android:stretchMode="spacingWidthUniform"
+                        android:verticalSpacing="1dp" >
+                    </cn.edu.bistu.tools.secondhandtools.NoScrollGridView>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="left"
+            android:text="物品标签：" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buju"
+            android:orientation="vertical" >
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="167dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="167dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" />
+
+            <EditText
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="left"
+                android:hint="标题：" />
+
+            <EditText
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="left"
+                android:hint="价格：" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="left"
+            android:text="物品描述：" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buju" >
+
+            <EditText
+                android:id="@+id/desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@null"
+                android:gravity="left"
+                android:minLines="2" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="left"
+            android:text="个人信息：" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buju"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/QQ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="left"
+                android:hint="QQ：" />
+
+            <EditText
+                android:id="@+id/e_mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="left"
+                android:hint="邮箱：" />
+
+            <EditText
+                android:id="@+id/tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="left"
+                android:hint="电话：" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

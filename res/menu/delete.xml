@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/del"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="@string/delete_string"/>
+
+</menu>
